@@ -19,7 +19,6 @@
 package edu.umaine.cs.h5.octave;
 
 import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.List;
 
 import edu.umaine.cs.h5.EmptyMatrix;
