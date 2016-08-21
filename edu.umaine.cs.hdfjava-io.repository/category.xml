@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature id="edu.umaine.cs.h5Connector.feature" version="0.0.0">
-      <category name="edu.umaine.cs.h5Connector"/>
+   <feature id="edu.umaine.cs.hdfjava-io.feature" version="0.0.0">
+      <category name="edu.umaine.cs.hdfjava-io"/>
    </feature>
-   <feature id="edu.umaine.cs.h5Connector.feature.source" version="0.0.0">
-      <category name="edu.umaine.cs.h5Connector.source"/>
+   <feature id="edu.umaine.cs.hdfjava-io.feature.source" version="0.0.0">
+      <category name="edu.umaine.cs.hdfjava-io.source"/>
    </feature>
-   <category-def name="edu.umaine.cs.h5Connector" label="H5 Connector">
+   <category-def name="edu.umaine.cs.hdfjava-io" label="H5 Connector">
       <description>
          H5 connector binary files.
       </description>
    </category-def>
-   <category-def name="edu.umaine.cs.h5Connector.source" label="H5 Connector (Sources)">
+   <category-def name="edu.umaine.cs.hdfjava-io.source" label="H5 Connector (Sources)">
       <description>
          H5 connector source files.
       </description>

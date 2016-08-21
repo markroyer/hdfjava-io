@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="edu.umaine.cs.h5Connector.feature"
+      id="edu.umaine.cs.hdfjava-io.feature"
       label="H5 Connector"
       version="1.0.0.qualifier">
 
@@ -1368,7 +1368,7 @@ Public License instead of this License.  But first, please read
    </requires>
 
    <plugin
-         id="edu.umaine.cs.h5Connector"
+         id="edu.umaine.cs.hdfjava-io"
          download-size="0"
          install-size="0"
          version="0.0.0"
