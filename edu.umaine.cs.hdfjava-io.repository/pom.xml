@@ -114,7 +114,7 @@
 
 			<properties>
 				<!-- remote rsync host -->
-				<rsync.remote.dir>FIXME:/home/mroyer/public_html/p2.repositories/updates/${project.name}/</rsync.remote.dir>
+				<rsync.remote.dir>../../hdfjava-io.wiki/p2.repositories/updates/${project.name}/</rsync.remote.dir>
 				<!-- local source directory for rsync (read from this directory) -->
 				<rsync.local.dir>${user.home}/p2.repositories/updates/${project.name}/</rsync.local.dir>
 				<!-- pass "-n" to perform a trial run with no changes made -->
