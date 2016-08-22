@@ -25,9 +25,9 @@
 			<url>http://download.eclipse.org/releases/mars</url>
 		</repository>
 		<repository>
-			<id>umaine</id>
+			<id>HDFJava</id>
 			<layout>p2</layout>
-			<url>http://p2:FIXME/p2.repositories/updates</url>
+			<url>https://raw.githubusercontent.com/wiki/markroyer/hdfjava-eclipse-plugin/p2.repositories/updates/ncsa.hdf.hdfjava.repository</url>
 		</repository>
 	</repositories>
 
