@@ -6,14 +6,14 @@
    <feature id="edu.umaine.cs.hdfjava-io.feature.source" version="0.0.0">
       <category name="edu.umaine.cs.hdfjava-io.source"/>
    </feature>
-   <category-def name="edu.umaine.cs.hdfjava-io" label="H5 Connector">
+   <category-def name="edu.umaine.cs.hdfjava-io" label="HDFJava IO">
       <description>
-         H5 connector binary files.
+         HDFJava IO binary files.
       </description>
    </category-def>
-   <category-def name="edu.umaine.cs.hdfjava-io.source" label="H5 Connector (Sources)">
+   <category-def name="edu.umaine.cs.hdfjava-io.source" label="HDFJava IO (Sources)">
       <description>
-         H5 connector source files.
+         HDFJava IO source files.
       </description>
    </category-def>
 </site>
