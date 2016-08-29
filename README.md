@@ -1,4 +1,4 @@
-# hdfjava-io
+# hdfjavaio
 
 A Java library for creating HDF files for languages such as
 Octave/Matlab.
@@ -23,15 +23,15 @@ https://rawgit.com/markroyer/p2-repositories/master
 The above repository contains the dependencies for the library.
 
 Alternatively, you may only want to add the following composite
-repository which contains only the hdfjava-io files.
+repository which contains only the hdfjavaio files.
 
 ```
-https://raw.githubusercontent.com/wiki/markroyer/hdfjava-io/edu.umaine.cs.hdfjava-io.repository/updates
+https://raw.githubusercontent.com/wiki/markroyer/hdfjavaio/edu.umaine.cs.hdfjavaio.repository/updates
 ```
 
 ### Install Using Direct Download
 
-The HDFJava-IO library can be directly downloaded from the following links.
+The Hdfjavaio library can be directly downloaded from the following links.
 
 * FIXME
 
@@ -39,7 +39,7 @@ The HDFJava-IO library can be directly downloaded from the following links.
 ## Building
 
 The project can be built most easily using maven from the
-`edu.umaine.cs.hdfjava-io.parent` directory. Typing
+`edu.umaine.cs.hdfjavaio.parent` directory. Typing
 
 ```bash
 mvn clean verify
@@ -49,7 +49,7 @@ will compile the project and create a repository containing all of the
 related libraries in
 
 ```bash
-../../hdfjava-io.wiki/
+../../hdfjavaio.wiki/
 ```
 
 ## LICENSE
@@ -62,5 +62,5 @@ The ant build scripts are based on code from:
 
 [http://www.lorenzobettini.it/2015/01/creating-p2-composite-repositories-during-the-build/](http://www.lorenzobettini.it/2015/01/creating-p2-composite-repositories-during-the-build/)
 
-<!--  LocalWords:  hdfjava io HDF Matlab OSGI mvn HDFJava
+<!--  LocalWords:  hdfjavaio HDF Matlab OSGI mvn HDFJava
  -->
