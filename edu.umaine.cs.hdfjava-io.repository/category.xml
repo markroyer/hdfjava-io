@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature id="edu.umaine.cs.hdfjava-io.feature" version="0.0.0">
-      <category name="edu.umaine.cs.hdfjava-io"/>
+   <feature id="edu.umaine.cs.hdfjavaio.feature" version="0.0.0">
+      <category name="edu.umaine.cs.hdfjavaio"/>
    </feature>
-   <feature id="edu.umaine.cs.hdfjava-io.feature.source" version="0.0.0">
-      <category name="edu.umaine.cs.hdfjava-io.source"/>
+   <feature id="edu.umaine.cs.hdfjavaio.feature.source" version="0.0.0">
+      <category name="edu.umaine.cs.hdfjavaio.source"/>
    </feature>
-   <category-def name="edu.umaine.cs.hdfjava-io" label="HDFJava IO">
+   <category-def name="edu.umaine.cs.hdfjavaio" label="HDFJava IO">
       <description>
          HDFJava IO binary files.
       </description>
    </category-def>
-   <category-def name="edu.umaine.cs.hdfjava-io.source" label="HDFJava IO (Sources)">
+   <category-def name="edu.umaine.cs.hdfjavaio.source" label="HDFJava IO (Sources)">
       <description>
          HDFJava IO source files.
       </description>

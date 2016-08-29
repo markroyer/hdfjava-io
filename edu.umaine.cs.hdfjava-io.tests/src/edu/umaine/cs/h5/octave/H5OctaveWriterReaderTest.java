@@ -113,7 +113,7 @@ public class H5OctaveWriterReaderTest {
 
 		final Object[] primitivesArray = { byteNeg, bytePos, intNeg, intPos, longNeg, longPos, shortNeg, shortPos };
 
-		Bundle bundle = Platform.getBundle("edu.umaine.cs.hdfjava-io.tests");
+		Bundle bundle = Platform.getBundle("edu.umaine.cs.hdfjavaio.tests");
 		URL fileURL = bundle.getEntry("target/classes/edu/umaine/cs/h5/octave/unsignedTypes.h5");
 		File file = null;
 		try {

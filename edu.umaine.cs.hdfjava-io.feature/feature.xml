@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="edu.umaine.cs.hdfjava-io.feature"
+      id="edu.umaine.cs.hdfjavaio.feature"
       label="HDFJava IO"
       version="1.0.0.qualifier">
 
@@ -1536,7 +1536,7 @@ Public License instead of this License.  But first, please read
    </requires>
 
    <plugin
-         id="edu.umaine.cs.hdfjava-io"
+         id="edu.umaine.cs.hdfjavaio"
          download-size="0"
          install-size="0"
          version="0.0.0"
