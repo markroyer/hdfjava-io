@@ -12,45 +12,8 @@
 
 	<packaging>eclipse-repository</packaging>
 
-	<properties>
-		<p2.repository.dest>${project.basedir}/../target/repository</p2.repository.dest>
-	</properties>
-
 	<build>
 		<plugins>
-			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<version>${maven-antrun-plugin.version}</version>
-				<executions>
-					<execution>
-						<id>copy-to-root-target</id>
-						<phase>package</phase>
-						<configuration>
-							<target>
-								<echo message="" />
-								<echo message="Repository path: ${project.build.directory}/repository" />
-								<echo message="Built version: ${unqualifiedVersion}.${buildQualifier}" />
-								<echo message="" />
-
-								<delete includeemptydirs="false" failonerror="false">
-									<fileset dir="${p2.repository.dest}">
-										<include name="**" />
-									</fileset>
-								</delete>
-								<copy includeemptydirs="false" todir="${p2.repository.dest}">
-									<fileset dir="target/repository">
-										<include name="**" />
-									</fileset>
-								</copy>
-							</target>
-						</configuration>
-						<goals>
-							<goal>run</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
 			<plugin>
 				<groupId>org.eclipse.tycho.extras</groupId>
 				<artifactId>tycho-eclipserun-plugin</artifactId>
@@ -105,61 +68,6 @@
 		</plugins>
 	</build>
 
-	<profiles>
-		<profile>
-			<id>release-composite</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
 
-			<properties>
-				<!-- remote rsync host -->
-				<rsync.remote.dir>../../hdfjava-io.wiki/p2.repositories/updates/${project.name}/</rsync.remote.dir>
-				<!-- local source directory for rsync (read from this directory) -->
-				<rsync.local.dir>${user.home}/p2.repositories/updates/${project.name}/</rsync.local.dir>
-				<!-- pass "-n" to perform a trial run with no changes made -->
-				<dryrun></dryrun>
-			</properties>
-
-			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-antrun-plugin</artifactId>
-						<version>${maven-antrun-plugin.version}</version>
-						<executions>
-							<execution>
-								<id>update-local-repository</id>
-								<phase>prepare-package</phase>
-								<configuration>
-									<target>
-										<ant antfile="${basedir}/rsync.ant" target="rsync-update">
-										</ant>
-									</target>
-								</configuration>
-								<goals>
-									<goal>run</goal>
-								</goals>
-							</execution>
-
-							<execution>
-								<id>deploy-repository</id>
-								<phase>verify</phase>
-								<configuration>
-									<target>
-										<ant antfile="${basedir}/rsync.ant" target="rsync-commit">
-										</ant>
-									</target>
-								</configuration>
-								<goals>
-									<goal>run</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 	<artifactId>edu.umaine.cs.hdfjava-io.repository</artifactId>
 </project>
