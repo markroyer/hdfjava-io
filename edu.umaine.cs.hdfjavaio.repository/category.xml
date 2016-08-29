@@ -6,14 +6,14 @@
    <feature id="edu.umaine.cs.hdfjavaio.feature.source" version="0.0.0">
       <category name="edu.umaine.cs.hdfjavaio.source"/>
    </feature>
-   <category-def name="edu.umaine.cs.hdfjavaio" label="HDFJava IO">
+   <category-def name="edu.umaine.cs.hdfjavaio" label="HDFJavaIO">
       <description>
-         HDFJava IO binary files.
+         HDFJavaIO binary files.
       </description>
    </category-def>
-   <category-def name="edu.umaine.cs.hdfjavaio.source" label="HDFJava IO (Sources)">
+   <category-def name="edu.umaine.cs.hdfjavaio.source" label="HDFJavaIO (Sources)">
       <description>
-         HDFJava IO source files.
+         HDFJavaIO source files.
       </description>
    </category-def>
 </site>

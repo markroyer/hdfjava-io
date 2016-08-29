@@ -27,7 +27,7 @@
 		<repository>
 			<id>HDFJava</id>
 			<layout>p2</layout>
-			<url>https://raw.githubusercontent.com/wiki/markroyer/hdfjava-eclipse-plugin/ncsa.hdf.hdfjava.repository</url>
+			<url>https://raw.githubusercontent.com/wiki/markroyer/hdfjava-eclipse-plugin/ncsa.hdf.hdfjava.repository/updates</url>
 		</repository>
 	</repositories>
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="edu.umaine.cs.hdfjavaio.feature"
-      label="HDFJava IO"
+      label="HDFJavaIO"
       version="1.0.0.qualifier">
 
    <description url="http://umaine.edu/cs/">
@@ -1532,7 +1532,8 @@ Public License instead of this License.  But first, please read
    </license>
 
    <requires>
-      <import feature="ncsa.hdf.hdfjava.feature" version="2.11.0.v20160813-2125" match="greaterOrEqual"/>
+      <import plugin="ncsa.hdf.hdfjava" version="2.11" match="greaterOrEqual"/>
+      <import feature="ncsa.hdf.hdfjava.feature" version="2.11" match="greaterOrEqual"/>
    </requires>
 
    <plugin
