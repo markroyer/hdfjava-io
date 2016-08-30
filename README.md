@@ -39,7 +39,7 @@ HDFJava library from the
 
 | Version | Binary               | Source                                   |
 | ------- | -------------------- | ---------------------------------------- |
-| **1.0** | [hdfjavaio_1.0.0.jar](https://raw.githubusercontent.com/wiki/markroyer/hdfjavaio/edu.umaine.cs.hdfjavaio.repository/updates/1.0/plugin/edu.umaine.cs.hdfjavaio_1.0.0.v20160829-2316.jar) | [edu.umaine.cs.hdfjavaio.source_1.0.0.jar](https://raw.githubusercontent.com/wiki/markroyer/hdfjavaio/edu.umaine.cs.hdfjavaio.repository/updates/1.0/plugin/edu.umaine.cs.hdfjavaio.source_1.0.0.v20160829-2316.jar)
+| **1.0** | [hdfjavaio_1.0.0.jar](https://raw.githubusercontent.com/wiki/markroyer/hdfjavaio/edu.umaine.cs.hdfjavaio.repository/updates/1.0/1.0.0.v20160829-2316/plugins/edu.umaine.cs.hdfjavaio_1.0.0.v20160829-2316.jar) | [edu.umaine.cs.hdfjavaio.source_1.0.0.jar](https://raw.githubusercontent.com/wiki/markroyer/hdfjavaio/edu.umaine.cs.hdfjavaio.repository/updates/1.0/1.0.0.v20160829-2316/plugins/edu.umaine.cs.hdfjavaio.source_1.0.0.v20160829-2316.jar)
 
 
 ## Building
