@@ -6,7 +6,7 @@ Octave/Matlab.
 
 ## Install
 
-The most recent version of the library is FIXME and can be installed
+The most recent version of the library is **1.0** and can be installed
 using Eclipse's plugin manager, or it can be downloaded directly
 below.
 
@@ -17,23 +17,29 @@ easiest way to use the software is to add the following URL to the
 list of available software sites in eclipse.
 
 ```
-https://rawgit.com/markroyer/p2-repositories/master
+https://raw.githubusercontent.com/wiki/markroyer/hdfjavaio/edu.umaine.cs.hdfjavaio.repository/updates
 ```
 
 The above repository contains the dependencies for the library.
 
 Alternatively, you may only want to add the following composite
-repository which contains only the hdfjavaio files.
+repository, which contains a number of libraries that I find useful
+for working with HDFJavaIO files.
 
 ```
-https://raw.githubusercontent.com/wiki/markroyer/hdfjavaio/edu.umaine.cs.hdfjavaio.repository/updates
+https://rawgit.com/markroyer/p2-repositories/master
 ```
 
 ### Install Using Direct Download
 
-The Hdfjavaio library can be directly downloaded from the following links.
+The HDFJavaIO library can be directly downloaded from the following
+links.  Please note, however, that these binaries also require the
+HDFJava library from the
+[HDFGroup](https://www.hdfgroup.org/products/java/).
 
-* FIXME
+| Version | Binary               | Source                                   |
+| ------- | -------------------- | ---------------------------------------- |
+| **1.0** | [hdfjavaio_1.0.0.jar](https://raw.githubusercontent.com/wiki/markroyer/hdfjavaio/edu.umaine.cs.hdfjavaio.repository/updates/1.0/plugin/edu.umaine.cs.hdfjavaio_1.0.0.v20160829-2316.jar) | [edu.umaine.cs.hdfjavaio.source_1.0.0.jar](https://raw.githubusercontent.com/wiki/markroyer/hdfjavaio/edu.umaine.cs.hdfjavaio.repository/updates/1.0/plugin/edu.umaine.cs.hdfjavaio.source_1.0.0.v20160829-2316.jar)
 
 
 ## Building
@@ -62,5 +68,7 @@ The ant build scripts are based on code from:
 
 [http://www.lorenzobettini.it/2015/01/creating-p2-composite-repositories-during-the-build/](http://www.lorenzobettini.it/2015/01/creating-p2-composite-repositories-during-the-build/)
 
-<!--  LocalWords:  hdfjavaio HDF Matlab OSGI mvn HDFJava
+<!--  LocalWords:  hdfjavaio HDF Matlab OSGI mvn HDFJava HDFJavaIO
+ -->
+<!--  LocalWords:  HDFGroup
  -->
