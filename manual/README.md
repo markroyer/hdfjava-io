@@ -7,10 +7,10 @@ HDF5 format.
 ## Requirements
 
 The TeX document requires beramono.sty which is found in the
-`texlive-fonts-extra` package on Debian-based linux systems.
+`texlive-fonts-extra` package on Debian-based Linux systems.
 
 The build also requires jurabib to be installed.  The jurabib is also
-found in the `texlive-bibtex-extra` package on Debian-based linux
+found in the `texlive-bibtex-extra` package on Debian-based Linux
 systems.
 
 ## Building
@@ -34,3 +34,6 @@ will get rid of miscellaneous TeX files.
 ## Contact
 
 <mark.e.royer@gmail.com>
+
+<!--  LocalWords:  HdfJavaIO HDF beramono texlive jurabib bibtex
+ -->
