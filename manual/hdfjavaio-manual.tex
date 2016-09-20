@@ -50,7 +50,7 @@
 
 \newenvironment*{berafont}{\fontfamily{beramono}\selectfont\ttfamily}{\par}
 
-\newcommand*{\hdfc}{\bera{HDFJavaIO Library}}
+\newcommand*{\hdfc}{\bera{HDFJavaIO}}
 
 \newcommand*{\java}[1]{{\color[rgb]{.5,0,.5}\bera{#1}}}
 \newcommand*{\octave}[1]{{\color[rgb]{.5,0,0}\bera{#1}}}
@@ -132,10 +132,10 @@
 
 Scientific Java programs commonly need to interact with high-level
 programming languages that focus on numerical computations such as
-Octave \cite{octave-url}.  This document discusses \hdfc\ a library
-that allows Java programs to read and write Octave Hierarchical Data
-Format 5 (HDF5) \cite{hdf5-url}.  This specification is based off of
-the Matlab 7.3 format (Need reference here).
+Octave \cite{octave-url}.  This document discusses the \hdfc\ library that
+allows Java programs to read and write Octave Hierarchical Data Format
+5 (HDF5) \cite{hdf5-url} files.  The reference specification for the
+Octave HDF5 file format is the Matlab 7.3 format \cite{mat-files-url}.
 
 The goal of the \hdfc\ library is to facilitate the interaction of
 Java programs with Octave.  HDF5 is a standard scientific file format
@@ -692,7 +692,7 @@ TODO
 %%  LocalWords:  HDF JavaOctave joPAS classpath JVM API APIs blackbox
 %%  LocalWords:  NCL NetCDF boolean dir Attr bool unboxing eg runtime
 %%  LocalWords:  genericity UTF textCell subfolder Iterable iterable
-%%  LocalWords:  writeObjectToFile checkedList qf
+%%  LocalWords:  writeObjectToFile checkedList qf hdfjavaio
 %%  LocalWords:  checkedCollection checkedMap subtype supertype uint
 %%  LocalWords:  structs struct Namespacing BigInteger EOF initScript
 %%  LocalWords:  Matlab TODO endian NaN xff xffff xffffffff upscaling
