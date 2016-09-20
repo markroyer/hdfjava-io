@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.umaine.cs.h5.EmptyMatrix;
-import edu.umaine.cs.h5.H5ConnectorException;
+import edu.umaine.cs.h5.H5Exception;
 import edu.umaine.cs.h5.H5Util;
 import edu.umaine.cs.h5.H5Writer;
 import edu.umaine.cs.h5.TypeException;
@@ -42,7 +42,7 @@ public class H5OctaveWriter implements H5Writer {
 	 * @see edu.umaine.cs.h5.H5Writer#writeHDF5File(java.lang.String, java.lang.Object[])
 	 */
 	@Override
-	public void writeHDF5File(String fileName, Object[] args) throws H5ConnectorException {
+	public void writeHDF5File(String fileName, Object[] args) throws H5Exception {
 
 		String[] labels = new String[args.length];
 		for (int i = 0; i < args.length; i++) {
@@ -58,7 +58,7 @@ public class H5OctaveWriter implements H5Writer {
 	 * @see edu.umaine.cs.h5.H5Writer#writeHDF5File(java.lang.String, java.lang.String[], java.lang.Object[])
 	 */
 	@Override
-	public void writeHDF5File(String fileName, String[] labels, Object[] args) throws H5ConnectorException {
+	public void writeHDF5File(String fileName, String[] labels, Object[] args) throws H5Exception {
 
 		H5File file = null;
 
@@ -69,7 +69,7 @@ public class H5OctaveWriter implements H5Writer {
 			int id = file.open();
 
 			if (id < 0) {
-				throw new H5ConnectorException("Unable to open the file " + fileName);
+				throw new H5Exception("Unable to open the file " + fileName);
 			}
 
 			for (int i = 0; i < args.length; i++) {
@@ -77,14 +77,14 @@ public class H5OctaveWriter implements H5Writer {
 			}
 
 		} catch (Exception e) {
-			throw new H5ConnectorException(e);
+			throw new H5Exception(e);
 		} finally {
 			if (file != null) {
 				// Finish and close file
 				try {
 					file.close();
 				} catch (HDF5Exception e) {
-					throw new H5ConnectorException(e); // Shouldn't happen
+					throw new H5Exception(e); // Shouldn't happen
 				}
 			}
 		}
@@ -102,10 +102,10 @@ public class H5OctaveWriter implements H5Writer {
 	 *            The name of the object (Not null)
 	 * @param obj
 	 *            The value to write (Not null)
-	 * @throws H5ConnectorException
+	 * @throws H5Exception
 	 *             Thrown if there is an issue writing to the file (most likely a typing problem)
 	 */
-	public void writeObjectToFile(H5File file, String label, Object obj) throws H5ConnectorException {
+	public void writeObjectToFile(H5File file, String label, Object obj) throws H5Exception {
 
 		Class<?> clazz = obj.getClass();
 
@@ -183,7 +183,7 @@ public class H5OctaveWriter implements H5Writer {
 
 			}
 		} catch (Exception e) {
-			throw new H5ConnectorException(e);
+			throw new H5Exception(e);
 		}
 
 	}

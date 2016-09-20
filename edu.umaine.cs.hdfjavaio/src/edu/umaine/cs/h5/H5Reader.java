@@ -12,10 +12,10 @@ public interface H5Reader {
 	 * @param inputFile
 	 *            An HDF5 file formatted using Octave style. (Not null)
 	 * @return All variables sorted by name. (Never null)
-	 * @throws H5ConnectorException
+	 * @throws H5Exception
 	 *             If unable to access file.
 	 */
-	public List<NameValuePair> readHDF5File(File file) throws H5ConnectorException;
+	public List<NameValuePair> readHDF5File(File file) throws H5Exception;
 
 	/**
 	 * Reads the specified values from the HDF5 file. If names is null all
@@ -25,8 +25,8 @@ public interface H5Reader {
 	 * @param names
 	 *            (Null allowed)
 	 * @return Variables sorted by the order given in names.
-	 * @throws H5ConnectorException
+	 * @throws H5Exception
 	 *             If unable to access file.
 	 */
-	public List<NameValuePair> readHDF5File(File file, String[] names) throws H5ConnectorException;
+	public List<NameValuePair> readHDF5File(File file, String[] names) throws H5Exception;
 }

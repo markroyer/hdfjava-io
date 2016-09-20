@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import edu.umaine.cs.h5.H5ConnectorException;
+import edu.umaine.cs.h5.H5Exception;
 import edu.umaine.cs.h5.H5Reader;
 import edu.umaine.cs.h5.NameValuePair;
 import ncsa.hdf.hdf5lib.H5;
@@ -34,7 +34,7 @@ public class H5OctaveReader implements H5Reader {
 	 * @see edu.umaine.cs.h5.H5Reader#readHDF5File(java.io.File)
 	 */
 	@Override
-	public List<NameValuePair> readHDF5File(File file) throws H5ConnectorException {
+	public List<NameValuePair> readHDF5File(File file) throws H5Exception {
 		return readHDF5File(file, null);
 	}
 
@@ -45,7 +45,7 @@ public class H5OctaveReader implements H5Reader {
 	 * java.lang.String[])
 	 */
 	@Override
-	public List<NameValuePair> readHDF5File(File file, String[] names) throws H5ConnectorException {
+	public List<NameValuePair> readHDF5File(File file, String[] names) throws H5Exception {
 
 		List<NameValuePair> results = new ArrayList<NameValuePair>();
 
@@ -106,7 +106,7 @@ public class H5OctaveReader implements H5Reader {
 			hdfFile.close();
 
 		} catch (Exception e) {
-			throw new H5ConnectorException(e);
+			throw new H5Exception(e);
 		}
 
 		return results;

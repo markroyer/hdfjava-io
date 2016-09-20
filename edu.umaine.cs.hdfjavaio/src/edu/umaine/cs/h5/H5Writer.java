@@ -11,10 +11,10 @@ public interface H5Writer {
 	 * @param fileName
 	 *            The name of the file to write to
 	 * @param args
-	 * @throws H5ConnectorException
+	 * @throws H5Exception
 	 *             If there is an issue writing to the file
 	 */
-	public void writeHDF5File(String fileName, Object[] args) throws H5ConnectorException;
+	public void writeHDF5File(String fileName, Object[] args) throws H5Exception;
 
 	/**
 	 * For each argument object write out to hdf5 file in Matlab format using
@@ -27,10 +27,10 @@ public interface H5Writer {
 	 *            The labels for the objects (Not null)
 	 * @param args
 	 *            The objects to write (Not null)
-	 * @throws H5ConnectorException
+	 * @throws H5Exception
 	 *             If there is an issue writing to the file
 	 */
-	public void writeHDF5File(String fileName, String[] labels, Object[] args) throws H5ConnectorException;
+	public void writeHDF5File(String fileName, String[] labels, Object[] args) throws H5Exception;
 
 	/**
 	 * Object is written to file using the subtype's convention. File must be
@@ -42,8 +42,8 @@ public interface H5Writer {
 	 *            The label for the object (Not null)
 	 * @param obj
 	 *            The object to write
-	 * @throws H5ConnectorException
+	 * @throws H5Exception
 	 */
-	public void writeObjectToFile(H5File file, String label, Object obj) throws H5ConnectorException;
+	public void writeObjectToFile(H5File file, String label, Object obj) throws H5Exception;
 
 }

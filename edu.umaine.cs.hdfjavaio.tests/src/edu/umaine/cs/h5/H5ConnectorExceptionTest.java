@@ -46,25 +46,25 @@ public class H5ConnectorExceptionTest {
 	}
 
 	/**
-	 * Test method for {@link edu.umaine.cs.h5.H5ConnectorException#H5ConnectorException(java.lang.String)}.
+	 * Test method for {@link edu.umaine.cs.h5.H5Exception#H5ConnectorException(java.lang.String)}.
 	 */
 	@Test
 	public void testH5ConnectorExceptionString() {
 	
 		String msg = "Failure!";
-		H5ConnectorException e = new H5ConnectorException(msg);
+		H5Exception e = new H5Exception(msg);
 		
 		assertEquals(msg, e.getMessage());
 	}
 
 	/**
-	 * Test method for {@link edu.umaine.cs.h5.H5ConnectorException#H5ConnectorException(java.lang.Exception)}.
+	 * Test method for {@link edu.umaine.cs.h5.H5Exception#H5ConnectorException(java.lang.Exception)}.
 	 */
 	@Test
 	public void testH5ConnectorExceptionException() {
 		
 		IllegalArgumentException e1 = new IllegalArgumentException();
-		H5ConnectorException e = new H5ConnectorException(e1);
+		H5Exception e = new H5Exception(e1);
 		
 		assertEquals(e1, e.getCause());
 		

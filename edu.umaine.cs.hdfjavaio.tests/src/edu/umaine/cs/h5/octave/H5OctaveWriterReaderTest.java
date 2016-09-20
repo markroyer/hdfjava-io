@@ -28,7 +28,7 @@ import org.junit.Test;
 import org.osgi.framework.Bundle;
 
 import edu.umaine.cs.h5.EmptyMatrix;
-import edu.umaine.cs.h5.H5ConnectorException;
+import edu.umaine.cs.h5.H5Exception;
 import edu.umaine.cs.h5.H5Reader;
 import edu.umaine.cs.h5.H5Writer;
 import edu.umaine.cs.h5.NameValuePair;
@@ -79,7 +79,7 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReadPrimitives() throws H5ConnectorException {
+	public void testWriteReadPrimitives() throws H5Exception {
 
 		final boolean booleanFalse = false;
 		final boolean booleanTrue = true;
@@ -100,7 +100,7 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReadUnsignedPrimitives() throws H5ConnectorException, URISyntaxException {
+	public void testWriteReadUnsignedPrimitives() throws H5Exception, URISyntaxException {
 
 		final byte bytePos = 127;
 		final byte byteNeg = Byte.MIN_VALUE; // 128 unsigned
@@ -133,7 +133,7 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReadStrings() throws H5ConnectorException {
+	public void testWriteReadStrings() throws H5Exception {
 
 		final String[] stringArray = { "Hello cruel world!", "first", "second", "third", "??????????" };
 
@@ -144,7 +144,7 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReadStringMatrix() throws H5ConnectorException {
+	public void testWriteReadStringMatrix() throws H5Exception {
 
 		final String[] str1dMatrix = { "aaaa", "bbbb", "cccc", "dddd", "eeee", "ffff", "gggg", "hhhh", "iiii" };
 		checkMatrix(str1dMatrix);
@@ -161,7 +161,7 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReadDifferentLengthStringMatrix() throws H5ConnectorException {
+	public void testWriteReadDifferentLengthStringMatrix() throws H5Exception {
 
 		final String[] str1dMatrix = { "Once", "upon", "a", "midnight", "dreary", "while", "I", "pondered", "many" };
 		final String[] str1dMatrixExpected = { "Once    ", "upon    ", "a       ", "midnight", "dreary  ", "while   ",
@@ -189,13 +189,13 @@ public class H5OctaveWriterReaderTest {
 		checkMatrix(char4dMatrix, char4dMatrixExpected);
 	}
 
-	@Test(expected = H5ConnectorException.class)
-	public void testWriteReadEmptyIterable() throws H5ConnectorException {
+	@Test(expected = H5Exception.class)
+	public void testWriteReadEmptyIterable() throws H5Exception {
 		checkMatrix(new ArrayList<Double>());
 	}
 
-	@Test(expected = H5ConnectorException.class)
-	public void testWriteReadMismatchedTypeIterable() throws H5ConnectorException {
+	@Test(expected = H5Exception.class)
+	public void testWriteReadMismatchedTypeIterable() throws H5Exception {
 
 		List<Number> nums = new ArrayList<Number>();
 		nums.add(5.5);
@@ -204,7 +204,7 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReadIterableObjects() throws H5ConnectorException {
+	public void testWriteReadIterableObjects() throws H5Exception {
 
 		final List<Integer> intGiven = Arrays.asList(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
 		final int[] intExpected = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -233,8 +233,8 @@ public class H5OctaveWriterReaderTest {
 
 	}
 
-	@Test(expected = H5ConnectorException.class)
-	public void testWriteReadEmptyMatrixThrowsException() throws H5ConnectorException {
+	@Test(expected = H5Exception.class)
+	public void testWriteReadEmptyMatrixThrowsException() throws H5Exception {
 
 		final boolean[] booleanEmpty1d = new boolean[0];
 		final byte[] byteEmpty1d = new byte[0];
@@ -253,19 +253,19 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReadEmptyMatrix() throws TypeException, H5ConnectorException {
+	public void testWriteReadEmptyMatrix() throws TypeException, H5Exception {
 		checkMatrix(new EmptyMatrix());
 	}
 
 	@Test
-	public void testWriteReadbooleanMatrix() throws H5ConnectorException {
+	public void testWriteReadbooleanMatrix() throws H5Exception {
 		final boolean[][][] boolean3dMatrix = { { { true, false }, { true, false }, { true, false } },
 				{ { false, true }, { false, true }, { false, true } } };
 		checkMatrix(boolean3dMatrix);
 	}
 
 	@Test
-	public void testWriteReadBooleanMatrix() throws H5ConnectorException {
+	public void testWriteReadBooleanMatrix() throws H5Exception {
 		final boolean[][][] boolean3dMatrix = { { { true, false }, { true, false }, { true, false } },
 				{ { false, true }, { false, true }, { false, true } } };
 		final Boolean[][][] Boolean3dMatrix = { { { true, false }, { true, false }, { true, false } },
@@ -274,7 +274,7 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReadbyteMatrix() throws H5ConnectorException {
+	public void testWriteReadbyteMatrix() throws H5Exception {
 		final byte[][][] byte3dMatrix = { { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } },
 				{ { 10, 11, 12 }, { 13, 14, 15 }, { 16, 17, 18 } },
 				{ { 19, 20, 21 }, { 22, 23, 24 }, { 25, 26, 27 } } };
@@ -282,7 +282,7 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReadByteMatrix() throws H5ConnectorException {
+	public void testWriteReadByteMatrix() throws H5Exception {
 		final byte[][][] byte3dMatrix = { { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } },
 				{ { 10, 11, 12 }, { 13, 14, 15 }, { 16, 17, 18 } },
 				{ { 19, 20, 21 }, { 22, 23, 24 }, { 25, 26, 27 } } };
@@ -293,7 +293,7 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReadCharMatrix() throws H5ConnectorException {
+	public void testWriteReadCharMatrix() throws H5Exception {
 		final char[][][] char3dMatrix = { { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } },
 				{ { 10, 11, 12 }, { 13, 14, 15 }, { 16, 17, 18 } },
 				{ { 19, 20, 21 }, { 22, 23, 24 }, { 25, 26, 27 } } };
@@ -306,7 +306,7 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReadCharacterMatrix() throws H5ConnectorException {
+	public void testWriteReadCharacterMatrix() throws H5Exception {
 		final char[][][] char3dMatrix = { { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } },
 				{ { 10, 11, 12 }, { 13, 14, 15 }, { 16, 17, 18 } },
 				{ { 19, 20, 21 }, { 22, 23, 24 }, { 25, 26, 27 } } };
@@ -317,7 +317,7 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReadshortMatrix() throws H5ConnectorException {
+	public void testWriteReadshortMatrix() throws H5Exception {
 		final short[][][] short3dMatrix = { { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } },
 				{ { 10, 11, 12 }, { 13, 14, 15 }, { 16, 17, 18 } },
 				{ { 19, 20, 21 }, { 22, 23, 24 }, { 25, 26, 27 } } };
@@ -325,7 +325,7 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReadShortMatrix() throws H5ConnectorException {
+	public void testWriteReadShortMatrix() throws H5Exception {
 		final short[][][] short3dMatrix = { { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } },
 				{ { 10, 11, 12 }, { 13, 14, 15 }, { 16, 17, 18 } },
 				{ { 19, 20, 21 }, { 22, 23, 24 }, { 25, 26, 27 } } };
@@ -336,7 +336,7 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReadIntMatrix() throws H5ConnectorException {
+	public void testWriteReadIntMatrix() throws H5Exception {
 
 		final int[] int1done = { 1 };
 		final int[][] int2done = { { 1 } };
@@ -355,7 +355,7 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReadIntegerMatrix() throws H5ConnectorException {
+	public void testWriteReadIntegerMatrix() throws H5Exception {
 		final int[][][] int3dMatrix = { { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } },
 				{ { 10, 11, 12 }, { 13, 14, 15 }, { 16, 17, 18 } },
 				{ { 19, 20, 21 }, { 22, 23, 24 }, { 25, 26, 27 } } };
@@ -366,7 +366,7 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReadlongMatrix() throws H5ConnectorException {
+	public void testWriteReadlongMatrix() throws H5Exception {
 		final long[][][] long3dMatrix = { { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } },
 				{ { 10, 11, 12 }, { 13, 14, 15 }, { 16, 17, 18 } },
 				{ { 19, 20, 21 }, { 22, 23, 24 }, { 25, 26, 27 } } };
@@ -374,7 +374,7 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReadLongMatrix() throws H5ConnectorException {
+	public void testWriteReadLongMatrix() throws H5Exception {
 		final long[][][] long3dMatrix = { { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } },
 				{ { 10, 11, 12 }, { 13, 14, 15 }, { 16, 17, 18 } },
 				{ { 19, 20, 21 }, { 22, 23, 24 }, { 25, 26, 27 } } };
@@ -385,7 +385,7 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReadfloatMatrix() throws H5ConnectorException {
+	public void testWriteReadfloatMatrix() throws H5Exception {
 		final float[][][] float3dMatrix = { { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } },
 				{ { 10, 11, 12 }, { 13, 14, 15 }, { 16, 17, 18 } },
 				{ { 19, 20, 21 }, { 22, 23, 24 }, { 25, 26, 27 } } };
@@ -393,7 +393,7 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReadFloatMatrix() throws H5ConnectorException {
+	public void testWriteReadFloatMatrix() throws H5Exception {
 		final float[][][] float3dMatrix = { { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } },
 				{ { 10, 11, 12 }, { 13, 14, 15 }, { 16, 17, 18 } },
 				{ { 19, 20, 21 }, { 22, 23, 24 }, { 25, 26, 27 } } };
@@ -404,7 +404,7 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReaddoubleMatrix() throws H5ConnectorException {
+	public void testWriteReaddoubleMatrix() throws H5Exception {
 		final double[][][] double3dMatrix = { { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } },
 				{ { 10, 11, 12 }, { 13, 14, 15 }, { 16, 17, 18 } },
 				{ { 19, 20, 21 }, { 22, 23, 24 }, { 25, 26, 27 } } };
@@ -412,7 +412,7 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	@Test
-	public void testWriteReadDoubleMatrix() throws H5ConnectorException {
+	public void testWriteReadDoubleMatrix() throws H5Exception {
 		final double[][][] double3dMatrix = { { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } },
 				{ { 10, 11, 12 }, { 13, 14, 15 }, { 16, 17, 18 } },
 				{ { 19, 20, 21 }, { 22, 23, 24 }, { 25, 26, 27 } } };
@@ -422,13 +422,13 @@ public class H5OctaveWriterReaderTest {
 		checkMatrix(Double3dMatrix, double3dMatrix);
 	}
 
-	@Test(expected = H5ConnectorException.class)
-	public void testInvalidFile() throws H5ConnectorException {
+	@Test(expected = H5Exception.class)
+	public void testInvalidFile() throws H5Exception {
 		writer.writeHDF5File("", new Object[] { 1, 2, 4 });
 	}
 
 	@Test
-	public void testWriteReadNamedVariables() throws H5ConnectorException {
+	public void testWriteReadNamedVariables() throws H5Exception {
 
 		String[] labels = new String[] { "int", "double" };
 		Object[] args = new Object[] { 1, 2.0 };
@@ -442,11 +442,11 @@ public class H5OctaveWriterReaderTest {
 		}
 	}
 
-	private void checkMatrix(Object matrix) throws H5ConnectorException {
+	private void checkMatrix(Object matrix) throws H5Exception {
 		checkMatrix(matrix, matrix);
 	}
 
-	private void checkMatrix(Object matrix, Object expectedMatrix) throws H5ConnectorException {
+	private void checkMatrix(Object matrix, Object expectedMatrix) throws H5Exception {
 		Object[] params = { matrix };
 		writer.writeHDF5File(testFileName, params);
 		List<NameValuePair> result = reader.readHDF5File(new File(testFileName));

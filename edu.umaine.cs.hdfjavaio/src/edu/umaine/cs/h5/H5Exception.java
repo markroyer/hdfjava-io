@@ -9,13 +9,13 @@ package edu.umaine.cs.h5;
  * @author Mark Royer
  *
  */
-public class H5ConnectorException extends Exception {
+public class H5Exception extends Exception {
 
-	public H5ConnectorException(String message) {
+	public H5Exception(String message) {
 		super(message);
 	}
 
-	public H5ConnectorException(Exception e) {
+	public H5Exception(Exception e) {
 		super(e);
 	}
 
