@@ -12,3 +12,13 @@ target/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Ignore manual output files
+/manual/hdfjavaio-manual.aux
+/manual/hdfjavaio-manual.bbl
+/manual/hdfjavaio-manual.blg
+/manual/hdfjavaio-manual.log
+/manual/hdfjavaio-manual.out
+/manual/hdfjavaio-manual.pdf
+/manual/hdfjavaio-manual.toc
+/manual/hdfjavaio-manual.url
