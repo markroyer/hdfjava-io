@@ -1,0 +1,698 @@
+
+\documentclass{memoir}
+
+% Jurabib must be included prior to hyperref package
+\usepackage[titleformat=italic,titleformat=commasep,commabeforerest,%
+   ibidem=strict,citefull=first,lookat,oxford,pages=format,idem]{jurabib}
+
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{multirow}
+\usepackage{setspace}
+\usepackage[usenames,dvipsnames,table]{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=NavyBlue,citecolor=Fuchsia]{hyperref}
+\usepackage{tabularx}
+\usepackage[framemethod=TikZ]{mdframed}
+
+\usepackage{forest}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{backgrounds}
+
+\usepackage{float}
+%\floatstyle{boxed} 
+\restylefloat{figure}
+
+\usepackage{lstcustom}
+
+%\pagestyle{plain}
+
+\chapterstyle{ell}
+
+\title{The \textit{HDFJavaIO} Library Documentation}
+%\date{}
+\author{Mark Royer}
+
+% The ^^J are required to prevent spacing issues
+\newcommand*{\bash}[1]{%
+  \begin{lstlisting}[language=bash, numbers=none]^^J
+    #1^^J
+  \end{lstlisting}
+}
+
+\newcommand*{\note}[1]{
+\begin{mdframed}[roundcorner=5pt,linewidth=.5pt,linecolor=red,backgroundcolor=red!10]
+  \textbf{NOTE:} #1
+\end{mdframed}
+}
+
+\newcommand*{\bera}[1]{\textbf{\fontfamily{beramono}\selectfont\ttfamily #1}}
+
+\newenvironment*{berafont}{\fontfamily{beramono}\selectfont\ttfamily}{\par}
+
+\newcommand*{\hdfc}{\bera{HDFJavaIO Library}}
+
+\newcommand*{\java}[1]{{\color[rgb]{.5,0,.5}\bera{#1}}}
+\newcommand*{\octave}[1]{{\color[rgb]{.5,0,0}\bera{#1}}}
+\newcommand*{\hdf}[1]{{\color[rgb]{0,.5,0}\bera{#1}}}
+
+\newcommand*{\ch}[1]{\multicolumn{1}{|c|}{\cellcolor{black!20}\textbf{#1}}}
+
+% Tree is based on code from
+% http://tex.stackexchange.com/questions/23647/drawing-a-directory-listing-a-la-the-tree-command-in-tikz
+\forestset{
+  dir tree/.style={
+    for tree={
+      parent anchor=south west,
+      child anchor=west,
+      anchor=mid west,
+      inner ysep=1pt,
+      grow'=0,
+      align=left,
+      edge path={
+        \noexpand\path [draw, \forestoption{edge}] (!u.parent anchor) ++(1em,0) |- (.child anchor)\forestoption{edge label};
+      },
+      font=\sffamily,
+      if n children=0{}{
+        delay={
+          prepend={[,phantom, calign with current]}
+        }
+      },
+      fit=band,
+      before computing xy={
+        l=2em
+      }
+    },
+  }
+}
+
+% Title page is based on examples from
+% ftp://ftp.u-aizu.ac.jp/pub/tex/CTAN/documentation/latex-samples/TitlePages/titlepages.pdf
+
+\newlength{\drop}% for my convenience
+%% select a (FontSite) font by its font family ID
+\newcommand*{\FSfont}[1]{\fontencoding{T1}\fontfamily{#1}\selectfont}
+
+\newcommand*{\titleDB}{
+\begingroup%
+\FSfont{5pl} % FontSite URW Palladio (Palatino)
+\drop = 0.14\textheight
+\centering
+\vspace*{\drop}
+{\Large THE}\\[\baselineskip]
+{\Huge The \textit{HDFJavaIO} Library}\\[\baselineskip]
+{\Huge Documentation}\\[1.5\baselineskip]
+{\LARGE \theauthor}\par
+\vfill
+    {\small\sffamily \href{https://umaine.edu}{The University of Maine}\\
+      \href{https://umaine.edu/scis/}{School of Computing and Information Science}\\
+      \today}\par
+\endgroup
+\thispagestyle{empty} % Removes title page number
+}
+
+\setsecnumdepth{subsubsection}
+\setcounter{tocdepth}{2}
+
+\begin{document}
+
+\titleDB
+
+\frontmatter
+
+\tableofcontents*
+
+\mainmatter
+
+\chapter{Introduction}
+\label{chap:intro}
+
+\section{Overview}
+\label{sec:overview}
+
+Scientific Java programs commonly need to interact with high-level
+programming languages that focus on numerical computations such as
+Octave \cite{octave-url}.  This document discusses \hdfc\ a library
+that allows Java programs to read and write Octave Hierarchical Data
+Format 5 (HDF5) \cite{hdf5-url}.  This specification is based off of
+the Matlab 7.3 format (Need reference here).
+
+The goal of the \hdfc\ library is to facilitate the interaction of
+Java programs with Octave.  HDF5 is a standard scientific file format
+used for storing large data sets.  Octave can use HDF5 for reading and
+storing data calculations.  The \hdfc\ library allows Java programs to
+create HDF5 files in the Octave format without requiring the
+programmer to know the details of the file structure.  The programmer
+can simply call functions in the library, and the Java objects are
+correctly written to an Octave HDF5 file in the correct structure.
+
+\section{Data Forms}
+\label{sec:data_forms}
+
+
+
+This document refers to three forms of data: data that is in the Java
+Programming Language, data that is represented in HDF5 files, and data
+that is in Octave.  In an attempt to make it clear which data form is
+being discussed, the following convention will be used.
+
+\noindent
+Java types will appear as
+
+\noindent
+\java{boolean}
+
+\noindent
+Octave types will appear as
+
+\noindent
+\octave{logical}
+
+\noindent
+And finally, HDF5 file types will be represented using 
+
+\noindent
+\hdf{64-bit floating-point}
+
+Generally, the notation given above will be used throughout the
+document.  However, code examples will use formatting and markup
+common for the language that it is written in.
+
+\chapter{Getting Started}
+\label{chap:getting-started}
+
+\section{Preparation}
+\label{sec:preparation}
+
+TODO
+
+\section{Writing Octave HDF5 Files}
+\label{sec:writing-octave-hdf5}
+
+TODO
+
+\section{Reading Octave HDF5 Files}
+\label{sec:reading-octave-hdf5}
+
+Reading Octave HDF5 files is the reverse process of writing them.  The
+\hdfc\ library uses the file specification mentioned above to convert
+the objects to the proper Java type.  There are a few caveats, though.
+
+Iterable objects are written as \bera{matrix} or \bera{cell} types
+based on the data that they contain.  Primitive data types are written
+as \bera{matrix} types, and \java{String} data is written as
+\bera{cell} type.  When these data types are read back into Java, they
+are converted to Java arrays.  The mapping of the array data back to
+the iterable object is not addressed.
+
+Octave also contains additional unsigned primitive types.  When these
+types are read by the \hdfc\ library, they are converted to the next
+size up integer type.  For example, \bera{uint8} is converted to a Java
+\java{short}.  The type \bera{uint64} is not handled at this
+point; however, it's possible that this could be represented as a Java
+\java{BigInteger}.
+
+\chapter{Specification}
+\label{chap:specification}
+
+\section{Basic HDF5 File Format}
+\label{sec:basics}
+
+The \hdfc\ library uses Java Core Reflection to inspect Java
+types and then properly write them to HDF5 files in the format
+required by Octave.  These files will be referred to as Octave HDF5
+files.
+
+HDF5 files are structured in such a way that they resemble a file
+system.  Specifically, HDF5 files are directed graphs, where data is
+stored using b-trees. Using the file system notion, Octave HDF5 files
+store variables in folders with the same name.  Each folder has an
+attribute named \textit{OCTAVE\_NEW\_FORMAT} that is an \hdf{8-bit
+  integer} specifying the Octave version.  Currently, all variables
+are stored using version 1 by the \hdfc\ library.
+
+Each variable ``folder'' contains a \textit{type} and \textit{value}.
+The \textit{type} is a meta string describing the type of the data for
+the variable.  The \textit{value} contains the actual data for the
+variable.  Figure \ref{fig:simpleHDF5} is an example of an
+Octave-formatted HDF5 file.  The file contains two Java variables
+named \java{x} and \java{y}. The type of \java{x} is \java{boolean},
+and its value is \java{true}.  The type of \java{y} is \java{char},
+and its value is \java{a}.
+
+In the HDF5 file is the Java variable \java{x} has a type string of
+\hdf{bool}, and value \java{true} is stored as \hdf{1.0} which is a
+\hdf{64-bit floating-point} type.  Similarly, the variable \java{y}
+has a type string of \hdf{sq\_string}, and the value \java{a} is stored
+as US-ASCII \hdf{8-bit} with the value \hdf{97}.
+
+\begin{figure}[h!]
+  \centering
+\frame{
+\begin{forest}
+  dir tree
+  [/
+    [x (Attr : \textit{OCTAVE\_NEW\_FORMAT=1})
+      [type : \textit{bool}
+      ]
+      [value : \textit{1.0}
+      ]
+    ]
+    [y (Attr : \textit{OCTAVE\_NEW\_FORMAT=1})
+      [type : \textit{sq\_string}
+      ]
+      [value : \textit{97}
+      ]
+    ]
+  ]
+\end{forest}
+}
+\caption{An example of an Octave-formatted HDF5 file containing two
+  variables x and y.  Each variable has an attribute specifying the
+  version, and it contains a type string along with the actual
+  value.}\label{fig:simpleHDF5}
+\end{figure}
+
+\note{The use of the \textit{OCTAVE\_NEW\_FORMAT} attribute for each
+  variable seems a little strange.  However, this attribute would
+  allow you to mix versions of the variables, so I suppose it is a
+  little more flexible than simply using one format for the entire
+  file.  To my knowledge, currently there is only the 1 version.}
+
+\section{Primitives}
+
+As mentioned above, the HDF5 files contain folders for each variable.
+Each folder contains a \textit{type} and a \textit{value} entry.
+Table \ref{table:primitives} shows the values used for the
+\textit{type} string and the actual HDF5 type used for storing the
+\textit{value} of each Java primitive type.  Integer data types are
+stored using little endian in the Octave formatted HDF5 file, so they
+are converted to big endian in Java.  The table also shows what the
+corresponding type becomes when it is read by Octave.
+
+\begin{table}[h]
+  \begin{center}
+  \renewcommand\tabcolsep{6pt}
+  \def\arraystretch{1.5}
+  \begin{tabular}{ | l | l | l | l | }
+    \hline
+    \ch{Java type} & \ch{HDF5 type string} & \ch{HDF5 value type} & \ch{Octave type} \\
+    \hline
+    \hline
+    \java{boolean} / \java{Boolean.class} & \hdf{bool} & \hdf{64-bit floating-point} & \octave{logical} \\
+    \hline
+    \java{char} / \java{Character.class} & \hdf{sq\_string} & \hdf{8-bit integer} & \octave{char} \\
+    \hline
+    \java{byte} / \java{Byte.class} & \hdf{int8 scalar} & \hdf{8-bit integer} & \octave{int8} \\
+    \hline
+    \java{short} / \java{Short.class} & \hdf{int16 scalar} & \hdf{16-bit integer} & \octave{int16} \\
+    \hline
+    \java{int} / \java{Integer.class} & \hdf{int32 scalar} & \hdf{32-bit integer} & \octave{int32} \\
+    \hline
+    \java{long} / \java{Long.class} & \hdf{int64 scalar} & \hdf{64-bit integer} & \octave{int64} \\
+    \hline
+    \java{float} / \java{Float.class} & \hdf{float scalar} & \hdf{32-bit floating-point} & \octave{single} \\
+    \hline
+    \java{double} / \java{Double.class} & \hdf{scalar} & \hdf{64-bit floating-point} & \octave{double} \\
+    \hline
+  \end{tabular}
+  \end{center}
+\caption{This table shows every Java primitive type, what its
+  corresponding HDF5 type string and HDF5 value type is, and what its
+  corresponding type is in Octave.}\label{table:primitives}
+\end{table}
+
+While most of the primitive values' corresponding types are not
+surprising, the types for \java{boolean} and \java{char} should be
+noted.  The \java{boolean} data type is stored as a \hdf{64-bit
+  floating-point} that can have the value of \hdf{0.0} or \hdf{1.0}.
+The type string for \java{char} is \hdf{sq\_string} instead of the
+\bera{char} type which both languages use for characters.
+
+Another notable item is that Java has \java{Object} wrapper types that
+represent each primitive, so these are represented in table
+\ref{table:primitives}.  Java \java{Object} primitives are used widely
+in the language and needed to be incorporated.  This is particularly
+important because Java uses auto-boxing and unboxing when storing
+primitive data in generic collections of objects, eg \java{List<E>},
+\java{Set<E>}, \java{Collection<E>}, etc.
+
+Since Java \java{Object} wrapper types need to be converted into
+primitives, \java{null} values are not allowed.  If a user of the
+\hdfc\ library has data collections that contain \java{null} values,
+she will need to either fill these values with \java{NaN} (or some
+other meaningful value), or the user can make use of \octave{cell}
+discussed in section \ref{sec:cells}.
+
+\note{Because Java uses the type-erasure paradigm for genericity, and
+  because the \hdfc\ library uses reflection to determine the
+  underlying type of the collection objects at runtime, this could
+  lead to problems when dealing with collections that contain mixed
+  types.  I will elaborate on this later.}
+
+Octave also contains unsigned primitive types.  These types are
+\octave{uint8}, \octave{uint16}, \octave{uint32}, and \octave{uint64}.
+These data types are converted to their corresponding Java data type
+with the same number of bits.  It is the responsibility of the user of
+the \hdfc\ library to handle these appropriately.
+
+For convenience, the \hdfc\ library contains utility functions to
+upscale some unsigned types.  These conversions are shown in table
+\ref{table:unsigned}.  Additional support for unsigned types has been
+added to the \java{Integer} and \java{Long} classes in Java 8
+\cite{oracle-datatypes-url}.
+
+\begin{table}[h]
+  \begin{center}
+  \renewcommand\tabcolsep{6pt}
+  \def\arraystretch{1.5}
+  \begin{tabular}{ | l | l | l | l | l | }
+    \hline
+    \ch{Java type} & \ch{Translation} & \ch{HDF5 type string} & \ch{HDF5 value type} & \ch{Octave type} \\
+    \hline
+    \hline
+    \java{short} & \java{(short)(v \& 0xff)} & \hdf{uint8 scalar} & \hdf{8-bit integer} & \octave{uint8} \\
+    \hline
+    \java{int} & \java{v \& 0xffff} & \hdf{uint16 scalar} & \hdf{16-bit integer} & \octave{uint16} \\
+    \hline
+    \java{long} & \java{v \& 0xffffffff} & \hdf{uint32 scalar} & \hdf{32-bit integer} & \octave{uint32} \\
+    \hline
+    \java{long}? & None? \java{BigInteger} class? & \hdf{uint64 scalar} & \hdf{64-bit integer} & \octave{uint64} \\
+    \hline
+  \end{tabular}
+  \end{center}
+  \caption{This table shows the upscaling done for unsigned primitives. The variable \java{v} represents the Java value read from the Octave-formatted HDF5 file with no bit modification.}\label{table:unsigned}
+\end{table}
+
+
+\section{Matrices}
+
+Matrices are represented slightly differently in the Octave HDF5 file
+format.  The details of which are shown in table \ref{table:matrices}.
+One difference in arrays between Java and Octave is that Octave
+requires array sizes to be rectangular (C-style arrays).  This is not
+the requirement for Java which uses jagged arrays.  For jagged arrays,
+make use of the \octave{cell} type discussed in section
+\ref{sec:cells}.  Table \ref{table:matrices} is similar to the
+primitive table, but it contains type information reported by the Java
+Core Reflection mechanism, and it also contains matrix dimension and
+size information.
+
+An usual difference between table matrix table (\ref{table:matrices})
+and the primitive table (\ref{table:primitives}) is the \java{boolean}
+type.  As a scalar, the \java{boolean} is represented in the HDF5 file
+as a \hdf{64-bit floating-point} number, but as a matrix,
+\java{boolean} values are represented as \hdf{32-bit integer}s.  I am
+not sure of the reason for the discrepancy.
+
+\begin{table}
+%\begin{berafont}
+  \begin{center}
+  \renewcommand\tabcolsep{6pt}
+  \def\arraystretch{1.5}
+  \begin{tabular}{ | l | l | l | l | }
+    \hline
+    \ch{Java Array type} & \ch{HDF5 type string} & \ch{HDF5 value type} & \ch{Octave type} \\
+    \hline
+    \hline
+    Z / Ljava.lang.Boolean; & \hdf{bool matrix} & \hdf{32-bit integer}, X & \octave{logical}, X \\
+    \hline
+    C / Ljava.lang.Character; & \hdf{sq\_string} & \hdf{8-bit integer}, X & \octave{char}, X \\
+    \hline
+    B / Ljava.lang.Byte; & \hdf{int8 matrix} & \hdf{8-bit integer}, X & \octave{int8}, X\\
+    \hline
+    S / Ljava.lang.Short; & \hdf{int16 matrix} & \hdf{16-bit integer}, X & \octave{int16}, X \\
+    \hline
+    I / Ljava.lang.Integer; & \hdf{int32 matrix} & \hdf{32-bit integer}, X & \octave{int32}, X \\
+    \hline
+    L / Ljava.lang.Long; & \hdf{int64 matrix} & \hdf{64-bit integer}, X & \octave{int64}, X \\
+    \hline
+    F / Ljava.lang.Float; & \hdf{float matrix} & \hdf{32-bit floating-point}, X & \octave{single}, X \\
+    \hline
+    D / Ljava.lang.Double; & \hdf{matrix} & \hdf{64-bit floating-point}, X & \octave{double}, X \\
+    \hline
+  \end{tabular}
+  \end{center}
+%\end{berafont}
+\caption{This table shows how every matrix composed of Java primitive
+  types is represented in the HDF5 file, and what its corresponding
+  type is in Octave. The \textbf{X} in columns 3 and 4 represent the number
+  of dimensions and the size of each dimension (eg 3x3).}\label{table:matrices}
+\end{table}
+
+\section{String Data Types}
+\label{sec:strings}
+
+String data is handled slightly differently by the \hdfc\ library.
+There are two reasons for this: Strings in Java are UTF-16 characters,
+but they are ASCII character arrays in Octave; And \java{String}
+objects in arrays are usually not rectangular in shape.
+
+In order to write a Java String to an Octave HDF5 file, the string is
+converted to an ASCII array, and then written to the file.  The same is
+done to Java characters.
+
+For multidimensional Java arrays to be written in the Octave HDF5 file
+format, the strings must be made the same length so that the resulting
+matrix is rectangular in shape. The resulting matrix uses empty
+characters to pad strings in order to achieve the rectangular
+shape. This is the default behavior in Octave when creating character
+matrices.
+
+If a padded rectangular character array is \textbf{not} what is
+required (which is likely the case, since String objects are likely to
+be of varying length in Java), then an alternative approach is used.
+
+In order to write Java arrays containing String objects of varying
+length to an Octave HDF5 file, the Octave \octave{cell} structure is
+used.  An example of this is given in section \ref{sec:cells}.
+
+\section{Cell Data Types}
+\label{sec:cells}
+
+Cell data types are the Octave equivalent of Java \java{Object}
+references.  Using the \octave{cell} data type it allows a user to
+specify jagged arrays.
+
+An example Octave HDF5 file with a two-dimensional Java \java{String}
+array named \java{textCell} with the values
+\lstinline${ {"one", "fine"}, {"autumn", "day"}}$ is shown in figure
+\ref{fig:cellHDF5}.  Similar to other data types in the Octave-format
+HDF5 file, the structure for the variable contains a \textit{type} and
+\textit{value} field.  The \textit{type} meta string has the value of
+\hdf{cell}.  The \textit{value}, however, is a sub-directory that
+contains multiple sub-directories for the data.
+
+\begin{figure}[h!]
+  \centering
+\frame{
+\begin{forest}
+  dir tree
+  [/
+    [textCell (Attr : \textit{OCTAVE\_NEW\_FORMAT=1})
+      [type : \textit{cell}
+      ]
+      [value
+        [\_0 (Attr : \textit{OCTAVE\_NEW\_FORMAT=1})
+          [type : \textit{string}
+          ]
+          [value : \textit{[111,110,101]}
+          ]
+        ]
+        [\_1 (Attr : \textit{OCTAVE\_NEW\_FORMAT=1})
+        ]
+        [\_2 (Attr : \textit{OCTAVE\_NEW\_FORMAT=1})
+        ]
+        [\_3 (Attr : \textit{OCTAVE\_NEW\_FORMAT=1})
+        ]
+        [dims : \textit{2x2}
+        ]
+      ]
+    ]
+  ]
+\end{forest}
+}
+\caption{An example of an Octave formatted HDF5 file containing a 2x2
+  cell structure with values \lstinline$\{ \{"one", "fine"\},
+  \{"autumn", "day"\} \}$.  Each cell has a subfolder containing the
+  actual data.  Jagged multidimensional cells can be achieved by
+  nesting cell structures.  For brevity, only the first cell value has
+  been expanded.}\label{fig:cellHDF5}
+\end{figure}
+
+\section{Complex Data Types}
+\label{sec:complex}
+
+Complex data types are represented in Octave and should be addressed.
+There are two types: \octave{single complex} and \octave{double
+  complex}.  These have not been addressed by the \hdfc\ library at this time.
+
+\section{Iterable objects}
+\label{sec:iterable}
+
+Objects of the type \java{Iterable<T>} can also be written out to
+Octave HDF5 file format using the \hdfc\ library.  Using the
+\hdfc\ library, the standard method for writing Java objects is shown
+in figure \ref{fig:standardWrite}.
+
+Because of type erasure in Java, there is no way of ensuring that an
+iterable collection contains the same types of objects.  For example,
+a \java{List<Number>} may contain objects of type \java{Integer},
+\java{Double}, \java{Float}, etc. The default write method can not be
+used in a situation like this where the container is using mixed
+types.  This is because it is not clear whether the type that should
+be written to file should be \java{Integer}, \java{Double}, or
+\java{Float}.
+
+\begin{figure}[h!]
+  \centering
+
+\begin{lstlisting}[language=java,style=eclipse,numbers=none]
+/**
+ * Object is written to the file using the octave convention. This means
+ * that a group will be created with the given label with two children. The
+ * children are named "type" and "value". The type is a string containing
+ * the octave type, and the value is object value.
+ * 
+ * @param file
+ *            An open HDF5 file (Not null)
+ * @param label
+ *            The name of the object (Not null)
+ * @param obj
+ *            The value to write (Not null)
+ * @throws H5Exception
+ *             Thrown if there is an issue writing to the file (most likely
+ *             a typing problem)
+ */
+public void writeObjectToFile(H5File file, String label, Object obj) throws H5Exception
+\end{lstlisting}    
+
+\caption{The standard object writing method used by the \hdfc\ library.}\label{fig:standardWrite}
+\end{figure}
+
+
+\note{In Java 5, the \java{Collections} class introduced a number
+  of methods to address collections that required guaranteed type
+  safety at runtime.  Some of these methods are
+  \java{checkedCollection}, \java{checkedList},
+  \java{checkedMap}, and others.  These methods check that the
+  type specified at compile time is the same as the type inserted into
+  the collection at run time.}
+
+To write an iterable object, an alternative method is used that
+contains an additional parameter that specify the type each
+object will be converted to.  If an attempt to convert an object to the
+given type fails, an \java{H5Exception} is thrown.
+The method signature is shown in figure \ref{fig:iterableWrite}.
+
+The method in figure \ref{fig:iterableWrite} is generic, which means
+that it is more likely to pass type conversion at runtime.  This is
+because the collection contents \bera{E} must be a subtype of Number
+and \bera{E} is a supertype of the given type \bera{T}.
+
+\note{The type bounding of \bera{E} in the method of figure
+  \ref{fig:iterableWrite} to \bera{Number} is so that only number
+  values can be written. But I'm not sure if this is necessary, since
+  \java{char} and \java{String} objects should be fine.  I'm
+  also not convinced that the type coercion is what I want.}
+
+Let's consider an example iterable object of type \java{List<Double>}.  The only valid
+value for the parameter \bera{type} would be \java{Class<Double>} since the class
+\java{Double} is declared as final.
+
+Now consider an iterable object of type \java{List<Number>}.
+Valid types that could be provided are \java{Double},
+\java{Integer}, \java{Float}, etc.  In this example, if the
+type \java{Integer} is provided, then any floating point numbers
+are truncated in the HDF5 file.  Conversely, if the type is \java{Double}, and the
+list contains \java{Integer} types, a widening primitive
+conversion occurs.
+
+\begin{figure}[h!]
+  \centering
+
+\begin{lstlisting}[language=java,style=eclipse,numbers=none]
+public <E extends Number, T extends E> void writeObjectToFile(H5File file, String label,
+                        Iterable<E> it, T type) throws H5Exception
+\end{lstlisting}    
+
+\caption{The method used by the \hdfc\ library to write iterable data objects.}\label{fig:iterableWrite}
+\end{figure}
+
+Nested iterable objects have not been addressed, so don't do it!
+
+\section{General Java Types}
+
+This project has not addressed representing Java objects in the Octave
+HDF5 format.  However, at first consideration, there appear to be two
+approaches: Represent objects using Octave's c-style structs; or use
+Octave's function objects.
+
+If this project were to convert Java objects into structs, then the
+method binding information would be lost.  However, the data
+associated with the Java objects would be represented in the struct
+object.  This seems reasonable for simple objects, eg
+\java{Point2D.Float} or \java{Point3D.Float}.
+
+An alternative approach would be to use the object-oriented function
+approach.  A function is used as a constructor to create an object
+similar to other functional languages, and then that function object
+is passed as the first parameter to methods. An implementation using
+this approach would require writing the object implementation to a
+file that Octave could access.  Namespacing considerations would have
+to be considered, too, since object definitions are globally defined
+in Octave.
+
+For now, this project does not address representing general Java
+objects in HDF5 files.
+
+
+
+\chapter{Related Libraries and Techniques}
+
+There only a few projects (to the knowledge of this author) that allow
+Java programmers to interact with Octave.  Three such projects are
+\textit{Octave Java Library}, \textit{JavaOctave}, and \textit{joPAS}.
+
+The \textit{Octave Java Library} is a standard package, included in
+Octave since version 3.8, that allows Octave programs to invoke Java
+from Octave.  Java libraries can be added by dynamically modifying the
+classpath in the Octave environment.  However, the direction is the
+wrong way. The JVM is invoked from a running Octave program instead of
+Octave being invoked from a running JVM.
+
+The \textit{joPAS} projects addresses running Octave from an active
+JVM.  The project allows a Java programmer to invoke octave commands
+through a simple API that passes string commands to a local Octave
+process.  Unfortunately, the \textit{joPAS} project does not
+support many Octave commands and types, and the project has become
+dormant since 2005.
+
+\textit{JavaOctave} is another Java library for invoking Octave
+commands from a running Java program.  It is a slightly more robust
+library that includes commands for converting Java types to an Octave
+environment and executing Octave commands.  Similar to \textit{joPAS},
+the \textit{JavaOctave} project has become dormant since 2012.  It
+does have one update in June 2015 to run properly on Octave 3.8, but
+it does not run properly on newer versions of Octave.
+
+\chapter{Building the Source Code}
+\label{chap:source}
+
+TODO
+
+\bibliography{hdfjavaio-manual}
+\bibliographystyle{jurabib}
+
+
+
+\end{document}
+
+
+%%  LocalWords:  HDF JavaOctave joPAS classpath JVM API APIs blackbox
+%%  LocalWords:  NCL NetCDF boolean dir Attr bool unboxing eg runtime
+%%  LocalWords:  genericity UTF textCell subfolder Iterable iterable
+%%  LocalWords:  writeObjectToFile checkedList qf
+%%  LocalWords:  checkedCollection checkedMap subtype supertype uint
+%%  LocalWords:  structs struct Namespacing BigInteger EOF initScript
+%%  LocalWords:  Matlab TODO endian NaN xff xffff xffffffff upscaling
