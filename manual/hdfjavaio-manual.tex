@@ -160,8 +160,8 @@ example, \java{boolean} is an example of a Boolean primitive data type
 in Java.
 
 Octave types will appear in maroon using the \octave{beramono} font.
-For example, \octave{logical} is an example of the same Boolean type
-in Octave.
+For example, \octave{logical} is an example of the Boolean type in
+Octave.
 
 Finally, HDF5 file types will be represented using green
 \hdf{beramono} font.  An example is the \hdf{64-bit floating-point},
@@ -174,8 +174,42 @@ formatting and markup common for the specific language.
 \chapter{Getting Started}
 \label{chap:getting-started}
 
-\section{Preparation}
+\section{Preparation \& Requirements}
 \label{sec:preparation}
+
+The \hdfc\ library is written in Java and therefore requires that a
+JVM is installed.  The latest version of \hdfc\ has been compiled
+using Java 8.  If you wish to make changes to the build so that the
+library is compatible to older JVMs, see chapter \ref{chap:source} of
+this manual.  Other requirements for the \hdfc\ library include the
+HDFJava library, which can be found at the HDF Group website
+\cite{hdf5-url}. Because the HDFJava library makes use of native code
+and Java Native Interface (JNI), associated binaries (for each
+platform) are required by the \hdfc\ library.
+
+To overcome the difficulty of integrating a variety of
+platform-specific binary files with Java programs, the \hdfc\ library
+has been made available in multiple formats.  The first, and perhaps
+simplest method, is for users of the Eclipse IDE, which can install an
+\hdfc\ plug-in to manage dependencies.  Another option is to use the
+\hdfc\ library with standard Java jar files.  This option, of course,
+requires that the developer manage all required dependencies. Finally,
+the \hdfc\ library can be used with Maven by inserting the dependency
+into the required \bera{pom.xml}.  These options are explored more
+deeply in the following subsections.
+
+\subsection{Eclipse Plug-in}
+\label{sec:eclipse-plug}
+
+TODO
+
+\subsection{Jar Dependencies}
+\label{sec:jar-dep}
+
+TODO
+
+\subsection{Maven}
+\label{sec:maven}
 
 TODO
 
@@ -689,3 +723,4 @@ TODO
 %%  LocalWords:  checkedCollection checkedMap subtype supertype uint
 %%  LocalWords:  structs struct Namespacing BigInteger EOF initScript
 %%  LocalWords:  Matlab TODO endian NaN xff xffff xffffffff upscaling
+%  LocalWords:  HDFJava JVMs xml JNI
