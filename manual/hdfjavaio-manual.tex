@@ -211,7 +211,16 @@ TODO
 \subsection{Maven}
 \label{sec:maven}
 
-TODO
+If using maven, then the required libraries can be added to the
+\bera{pom.xml} file as follows.
+
+\begin{verbatim}
+<repository>
+  <id>royer</id>
+  <layout>p2</layout>
+  <url>https://rawgit.com/markroyer/p2-repositories/master</url>
+</repository>
+\end{verbatim}
 
 \section{Writing Octave HDF5 Files}
 \label{sec:writing-octave-hdf5}
