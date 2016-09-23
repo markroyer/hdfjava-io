@@ -1,0 +1,16 @@
+language: java
+
+sudo: false
+
+cache:
+ directories:
+   - $HOME/.m2
+
+jdk:
+  - openjdk8
+#  - oraclejdk8
+
+os:
+  - linux
+
+script: mvn -f edu.umaine.cs.hdfjavaio.parent/pom.xml clean test
