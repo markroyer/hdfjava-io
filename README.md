@@ -2,8 +2,8 @@
 
 [![Build Status](https://travis-ci.org/markroyer/hdfjavaio.svg?branch=master)](https://travis-ci.org/markroyer/hdfjavaio)
 
-A Java library for creating HDF files for languages such as
-Octave/Matlab.
+HDFJavaIO is a Java library for creating HDF files in Java for
+languages such as Octave/Matlab.
 
 
 ## Install
