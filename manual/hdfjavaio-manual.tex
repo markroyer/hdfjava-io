@@ -201,7 +201,24 @@ deeply in the following subsections.
 \subsection{Eclipse Plug-in}
 \label{sec:eclipse-plug}
 
-TODO
+The library has been written as an OSGI (Eclipse plugin), so the
+easiest way to use the software is to add the following URL to the
+list of available software sites in eclipse.
+
+\begin{verbatim}
+https://raw.githubusercontent.com/wiki/markroyer/hdfjavaio/edu.umaine.cs.hdfjavaio.repository/updates
+\end{verbatim}
+
+The above repository contains the dependencies for the library.
+
+Alternatively, you may only want to add the following composite
+repository, which contains a number of libraries that I find useful
+for working with HDFJavaIO files.
+
+\begin{verbatim}
+https://rawgit.com/markroyer/p2-repositories/master
+\end{verbatim}
+
 
 \subsection{Jar Dependencies}
 \label{sec:jar-dep}
@@ -732,4 +749,4 @@ TODO
 %%  LocalWords:  checkedCollection checkedMap subtype supertype uint
 %%  LocalWords:  structs struct Namespacing BigInteger EOF initScript
 %%  LocalWords:  Matlab TODO endian NaN xff xffff xffffffff upscaling
-%  LocalWords:  HDFJava JVMs xml JNI
+%  LocalWords:  HDFJava JVMs xml JNI OSGI HDFJavaIO
