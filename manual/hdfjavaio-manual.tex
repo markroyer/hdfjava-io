@@ -33,12 +33,40 @@
 %\date{}
 \author{Mark Royer}
 
-% The ^^J are required to prevent spacing issues
-\newcommand*{\bash}[1]{%
-  \begin{lstlisting}[language=bash, numbers=none]^^J
-    #1^^J
-  \end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% STYLE FOR MAVEN %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\definecolor{bashgray}{RGB}{249,249,249}
+\definecolor{bashblue}{RGB}{47,111,171}
+\mdfdefinestyle{mavencodebox}{%
+ roundcorner=5pt,
+ skipabove=10pt,skipbelow=10pt,
+ middlelinewidth=1pt,
+ backgroundcolor=bashgray,
+ linecolor=bashgray,
+ tikzsetting={draw=bashblue,line width=1pt,%
+   dashed,%
+   dash pattern= on 2pt off 2pt},
 }
+\lstnewenvironment{mavencode}[1][]
+{\lstset{language=ant, % No maven support :(
+    numbers=none,
+    frame=,
+    captionpos=b,
+    belowskip=0pt,
+    aboveskip=0pt,
+    #1
+  }
+}{}
+\surroundwithmdframed[style=mavencodebox]{mavencode}
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% END STYLE FOR MAVEN %%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \newcommand*{\note}[1]{
 \begin{mdframed}[roundcorner=5pt,linewidth=.5pt,linecolor=red,backgroundcolor=red!10]
@@ -201,7 +229,7 @@ deeply in the following subsections.
 \subsection{Eclipse Plug-in}
 \label{sec:eclipse-plug}
 
-The library has been written as an OSGI (Eclipse plugin), so the
+The library has been written as an OSGI (Eclipse plug-in), so the
 easiest way to use the software is to add the following URL to the
 list of available software sites in eclipse.
 
@@ -212,7 +240,7 @@ https://raw.githubusercontent.com/wiki/markroyer/hdfjavaio/edu.umaine.cs.hdfjava
 The above repository contains the dependencies for the
 library. Alternatively, you may only want to add the following
 composite repository, which contains a number of libraries that I find
-useful for working with HDFJavaIO files.
+useful when working with HDFJavaIO files.
 
 \begin{verbatim}
 https://rawgit.com/markroyer/p2-repositories/master
@@ -227,15 +255,18 @@ links. Please note, however, that these binaries also require the
 HDFJava library from the HDFGroup.
 \\
 \\
+\begin{center}
 \noindent
 \begin{tabular}[h]{ | l | l | l | }
 \hline
 Version & Binary & Source \\
 \hline
 \hline
-1.0 & hdfjavaio\_1.0.0.jar & edu.umaine.cs.hdfjavaio.source\_1.0.0.jar \\
+1.0 & \href{https://raw.githubusercontent.com/wiki/markroyer/hdfjavaio/edu.umaine.cs.hdfjavaio.repository/updates/1.0/1.0.0.v20160829-2316/plugins/edu.umaine.cs.hdfjavaio_1.0.0.v20160829-2316.jar}{hdfjavaio\_1.0.0.jar} & \href{https://raw.githubusercontent.com/wiki/markroyer/hdfjavaio/edu.umaine.cs.hdfjavaio.repository/updates/1.0/1.0.0.v20160829-2316/plugins/edu.umaine.cs.hdfjavaio.source_1.0.0.v20160829-2316.jar}{edu.umaine.cs.hdfjavaio.source\_1.0.0.jar} \\
 \hline
 \end{tabular}
+  
+\end{center}
 
 
 \subsection{Maven}
@@ -244,13 +275,13 @@ Version & Binary & Source \\
 If using maven, then the required libraries can be added to the
 \bera{pom.xml} file as follows.
 
-\begin{verbatim}
+\begin{mavencode}
 <repository>
   <id>royer</id>
   <layout>p2</layout>
   <url>https://rawgit.com/markroyer/p2-repositories/master</url>
 </repository>
-\end{verbatim}
+\end{mavencode}
 
 \section{Writing Octave HDF5 Files}
 \label{sec:writing-octave-hdf5}
