@@ -269,11 +269,12 @@ Version & Binary & Source \\
 \end{center}
 
 
-\subsection{Maven}
+\subsection{Maven with Tycho}
 \label{sec:maven}
 
-If using maven, then the required libraries can be added to the
-\bera{pom.xml} file as follows.
+Maven can be used to help aleviate the dependency issues that might
+arise while using HDFJava related libraries. If using maven, then the
+required libraries can be added to the \bera{pom.xml} file as follows.
 
 \begin{mavencode}
 <repository>
@@ -282,6 +283,8 @@ If using maven, then the required libraries can be added to the
   <url>https://rawgit.com/markroyer/p2-repositories/master</url>
 </repository>
 \end{mavencode}
+
+TODO -- Add more details about using Tycho with Maven.
 
 \section{Writing Octave HDF5 Files}
 \label{sec:writing-octave-hdf5}
@@ -421,10 +424,11 @@ corresponding type becomes when it is read by Octave.
 
 While most of the primitive values' corresponding types are not
 surprising, the types for \java{boolean} and \java{char} should be
-noted.  The \java{boolean} data type is stored as a \hdf{64-bit
-  floating-point} that can have the value of \hdf{0.0} or \hdf{1.0}.
-The type string for \java{char} is \hdf{sq\_string} instead of the
-\bera{char} type which both languages use for characters.
+discussed a bit.  The \java{boolean} data type is stored as a
+\hdf{64-bit floating-point} that can have the value of \hdf{0.0} or
+\hdf{1.0}.  The type string for \java{char} is \hdf{sq\_string}
+instead of the \bera{char} type which both languages use for
+characters.
 
 Another notable item is that Java has \java{Object} wrapper types that
 represent each primitive, so these are represented in table
@@ -503,7 +507,7 @@ as a \hdf{64-bit floating-point} number, but as a matrix,
 not sure of the reason for the discrepancy.
 
 \begin{table}
-%\begin{berafont}
+\begin{berafont}
   \begin{center}
   \renewcommand\tabcolsep{6pt}
   \def\arraystretch{1.5}
@@ -530,7 +534,7 @@ not sure of the reason for the discrepancy.
     \hline
   \end{tabular}
   \end{center}
-%\end{berafont}
+\end{berafont}
 \caption{This table shows how every matrix composed of Java primitive
   types is represented in the HDF5 file, and what its corresponding
   type is in Octave. The \textbf{X} in columns 3 and 4 represent the number
@@ -557,8 +561,9 @@ shape. This is the default behavior in Octave when creating character
 matrices.
 
 If a padded rectangular character array is \textbf{not} what is
-required (which is likely the case, since String objects are likely to
-be of varying length in Java), then an alternative approach is used.
+required by the developer (which is likely the case, since String
+objects are likely to be of varying length in Java), then an
+alternative approach is used.
 
 In order to write Java arrays containing String objects of varying
 length to an Octave HDF5 file, the Octave \octave{cell} structure is
@@ -568,7 +573,7 @@ used.  An example of this is given in section \ref{sec:cells}.
 \label{sec:cells}
 
 Cell data types are the Octave equivalent of Java \java{Object}
-references.  Using the \octave{cell} data type it allows a user to
+references.  Using the Octave \octave{cell} data type allows a user to
 specify jagged arrays.
 
 An example Octave HDF5 file with a two-dimensional Java \java{String}
@@ -610,7 +615,7 @@ contains multiple sub-directories for the data.
 \end{forest}
 }
 \caption{An example of an Octave formatted HDF5 file containing a 2x2
-  cell structure with values \lstinline$\{ \{"one", "fine"\},
+  \hdf{cell} structure with values \lstinline$\{ \{"one", "fine"\},
   \{"autumn", "day"\} \}$.  Each cell has a subfolder containing the
   actual data.  Jagged multidimensional cells can be achieved by
   nesting cell structures.  For brevity, only the first cell value has
