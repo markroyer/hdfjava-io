@@ -39,10 +39,12 @@ public class H5OctaveWriter implements H5Writer {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see edu.umaine.cs.h5.H5Writer#writeHDF5File(java.lang.String, java.lang.Object[])
+	 * @see edu.umaine.cs.h5.H5Writer#writeHDF5File(java.lang.String,
+	 * java.lang.Object[])
 	 */
 	@Override
-	public void writeHDF5File(String fileName, Object[] args) throws H5Exception {
+	public void writeHDF5File(String fileName, Object[] args)
+			throws H5Exception {
 
 		String[] labels = new String[args.length];
 		for (int i = 0; i < args.length; i++) {
@@ -52,13 +54,21 @@ public class H5OctaveWriter implements H5Writer {
 
 	}
 
+	@Override
+	public void writeHDF5File(String fileName, List<Object> args)
+			throws H5Exception {
+		writeHDF5File(fileName, args.toArray());
+	}
+
 	/*
 	 * (non-Javadoc) throw new TypeException("Dimensions are too big.");
 	 * 
-	 * @see edu.umaine.cs.h5.H5Writer#writeHDF5File(java.lang.String, java.lang.String[], java.lang.Object[])
+	 * @see edu.umaine.cs.h5.H5Writer#writeHDF5File(java.lang.String,
+	 * java.lang.String[], java.lang.Object[])
 	 */
 	@Override
-	public void writeHDF5File(String fileName, String[] labels, Object[] args) throws H5Exception {
+	public void writeHDF5File(String fileName, String[] labels, Object[] args)
+			throws H5Exception {
 
 		H5File file = null;
 
@@ -91,10 +101,18 @@ public class H5OctaveWriter implements H5Writer {
 
 	}
 
+	@Override
+	public void writeHDF5File(String fileName, List<String> labels,
+			List<Object> args) throws H5Exception {
+		writeHDF5File(fileName, labels.toArray(new String[labels.size()]),
+				args.toArray());
+	}
+
 	/**
-	 * Object is written to the file using the octave convention. This means that a group will be created with the given
-	 * label with two children. The children are named "type" and "value". The type is a string containing the octave
-	 * type, and the value is object value.
+	 * Object is written to the file using the octave convention. This means
+	 * that a group will be created with the given label with two children. The
+	 * children are named "type" and "value". The type is a string containing
+	 * the octave type, and the value is object value.
 	 * 
 	 * @param file
 	 *            An open HDF5 file (Not null)
@@ -103,9 +121,11 @@ public class H5OctaveWriter implements H5Writer {
 	 * @param obj
 	 *            The value to write (Not null)
 	 * @throws H5Exception
-	 *             Thrown if there is an issue writing to the file (most likely a typing problem)
+	 *             Thrown if there is an issue writing to the file (most likely
+	 *             a typing problem)
 	 */
-	public void writeObjectToFile(H5File file, String label, Object obj) throws H5Exception {
+	public void writeObjectToFile(H5File file, String label, Object obj)
+			throws H5Exception {
 
 		Class<?> clazz = obj.getClass();
 
@@ -118,25 +138,31 @@ public class H5OctaveWriter implements H5Writer {
 				Class<?> type = null;
 				for (Object item : it) {
 					if (type != null && type != item.getClass())
-						throw new TypeException(item.getClass(), "Mixed types not allowed for iterable types.");
+						throw new TypeException(item.getClass(),
+								"Mixed types not allowed for iterable types.");
 					type = item.getClass();
 					values.add(item);
 				}
 
 				if (values.size() == 0)
-					throw new TypeException(clazz, "Zero length matrix is not allowed.  See EmptyMatrix.class.");
+					throw new TypeException(clazz,
+							"Zero length matrix is not allowed.  See EmptyMatrix.class.");
 
-				// Set the current object and type to the converted iterable array.
-				obj = values.toArray((Object[]) Array.newInstance(type, values.size()));
+				// Set the current object and type to the converted iterable
+				// array.
+				obj = values.toArray(
+						(Object[]) Array.newInstance(type, values.size()));
 				clazz = obj.getClass();
 			}
 
-			// Setup the group and set the OCTAVE attribute so that the object is not parsed as a struct when loaded by
+			// Setup the group and set the OCTAVE attribute so that the object
+			// is not parsed as a struct when loaded by
 			// octave.
 
 			H5Group objLabelGroup = (H5Group) file.createGroup(label, null);
 
-			ncsa.hdf.object.Attribute attr = new ncsa.hdf.object.Attribute("OCTAVE_NEW_FORMAT", UBYTE, new long[] {});
+			ncsa.hdf.object.Attribute attr = new ncsa.hdf.object.Attribute(
+					"OCTAVE_NEW_FORMAT", UBYTE, new long[] {});
 			attr.setValue(new int[] { 1 });
 			file.writeAttribute(objLabelGroup, attr, false);
 
@@ -147,7 +173,8 @@ public class H5OctaveWriter implements H5Writer {
 			if (!clazz.isArray()) {
 
 				// Try to write out the basic types...
-				file.createScalarDS("value", objLabelGroup, toH5(clazz), dims, null, null, 0, prepForWrite(obj, dims));
+				file.createScalarDS("value", objLabelGroup, toH5(clazz), dims,
+						null, null, 0, prepForWrite(obj, dims));
 
 			} else { // Arrays ...
 
@@ -177,8 +204,8 @@ public class H5OctaveWriter implements H5Writer {
 				//
 				// } else {
 
-				file.createScalarDS("value", objLabelGroup, toH5(clazz), dims, null, null, 0, null,
-						prepForWrite(obj, dims));
+				file.createScalarDS("value", objLabelGroup, toH5(clazz), dims,
+						null, null, 0, null, prepForWrite(obj, dims));
 				// }
 
 			}
@@ -189,7 +216,8 @@ public class H5OctaveWriter implements H5Writer {
 	}
 
 	/**
-	 * Writes out octave data type based on the given Java data type to the file group named objLabelGroup.
+	 * Writes out octave data type based on the given Java data type to the file
+	 * group named objLabelGroup.
 	 * 
 	 * @param file
 	 *            The file to write to (Not null)
@@ -197,31 +225,37 @@ public class H5OctaveWriter implements H5Writer {
 	 *            The name of the group to wrie to (Not null)
 	 * @param type
 	 *            The data type (Not null)
-	 * @return The data set of the create octave type. This is just a string that represents the octave type. (Never
-	 *         null)
+	 * @return The data set of the create octave type. This is just a string
+	 *         that represents the octave type. (Never null)
 	 * @throws Exception
-	 *             Thrown if the type is not found or there was a problem writing to the file.
+	 *             Thrown if the type is not found or there was a problem
+	 *             writing to the file.
 	 */
-	private H5ScalarDS writeType(H5File file, H5Group objLabelGroup, Class<?> type) throws Exception {
+	private H5ScalarDS writeType(H5File file, H5Group objLabelGroup,
+			Class<?> type) throws Exception {
 
 		String octaveType = OctaveUtil.getOctaveType(type);
 
 		// Need +1 for null string termination
-		final H5Datatype typeString = new H5Datatype(Datatype.CLASS_STRING, octaveType.length() + 1, -1, -1);
-		H5ScalarDS dset2 = (H5ScalarDS) file.createScalarDS("type", objLabelGroup, typeString, new long[] {}, null,
-				null, 0, new String[] { octaveType });
+		final H5Datatype typeString = new H5Datatype(Datatype.CLASS_STRING,
+				octaveType.length() + 1, -1, -1);
+		H5ScalarDS dset2 = (H5ScalarDS) file.createScalarDS("type",
+				objLabelGroup, typeString, new long[] {}, null, null, 0,
+				new String[] { octaveType });
 
 		return dset2;
 	}
 
-	private Object prepForWrite(Object obj, long[] dims) throws UnsupportedEncodingException, TypeException {
+	private Object prepForWrite(Object obj, long[] dims)
+			throws UnsupportedEncodingException, TypeException {
 
 		Class<?> clazz = obj.getClass();
 
 		if (boolean.class == clazz || Boolean.class == clazz) {
 			// Booleans are stored in a double as 1 or 0
 			return new double[] { ((boolean) obj) ? 1.0 : 0.0 };
-		} else if (char.class == clazz || Character.class == clazz || String.class == clazz)
+		} else if (char.class == clazz || Character.class == clazz
+				|| String.class == clazz)
 			return obj.toString().getBytes("US-ASCII");
 		else if (byte.class == clazz || Byte.class == clazz)
 			return new byte[] { ((byte) obj) };

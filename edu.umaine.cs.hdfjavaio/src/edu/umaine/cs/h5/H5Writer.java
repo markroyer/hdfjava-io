@@ -1,5 +1,7 @@
 package edu.umaine.cs.h5;
 
+import java.util.List;
+
 import ncsa.hdf.object.h5.H5File;
 
 public interface H5Writer {
@@ -9,17 +11,32 @@ public interface H5Writer {
 	 * args[0], p1 for args[1], etc.
 	 * 
 	 * @param fileName
-	 *            The name of the file to write to
+	 *            The name of the file to write to (Not null)
 	 * @param args
+	 *            The arguments to write to file (Not null)
 	 * @throws H5Exception
 	 *             If there is an issue writing to the file
 	 */
-	public void writeHDF5File(String fileName, Object[] args) throws H5Exception;
+	public void writeHDF5File(String fileName, Object[] args)
+			throws H5Exception;
 
 	/**
-	 * For each argument object write out to hdf5 file in Matlab format using
-	 * the corresponding label. The labels must be the same length as the args
-	 * array.
+	 * Writes the given arguments to an HDF5 file using p0 for the name of
+	 * args.get(0), p1 for args.get(1), etc.
+	 * 
+	 * @param fileName
+	 *            The name of the file to write to (Not null)
+	 * @param args
+	 *            The arguments to write to file (Not null)
+	 * @throws H5Exception
+	 *             If there is an issue writing to the file
+	 */
+	public void writeHDF5File(String fileName, List<Object> args)
+			throws H5Exception;
+
+	/**
+	 * For each argument object write out to HDF5 file using the corresponding
+	 * label. The labels must be the same length as the args array.
 	 * 
 	 * @param fileName
 	 *            The name of the file to write to (Not null)
@@ -30,7 +47,24 @@ public interface H5Writer {
 	 * @throws H5Exception
 	 *             If there is an issue writing to the file
 	 */
-	public void writeHDF5File(String fileName, String[] labels, Object[] args) throws H5Exception;
+	public void writeHDF5File(String fileName, String[] labels, Object[] args)
+			throws H5Exception;
+
+	/**
+	 * For each argument object write out to HDF5 file using the corresponding
+	 * label. The labels must be the same length as the args array.
+	 * 
+	 * @param fileName
+	 *            The name of the file to write to (Not null)
+	 * @param labels
+	 *            The labels for the objects (Not null)
+	 * @param args
+	 *            The objects to write (Not null)
+	 * @throws H5Exception
+	 *             If there is an issue writing to the file
+	 */
+	public void writeHDF5File(String fileName, List<String> labels,
+			List<Object> args) throws H5Exception;
 
 	/**
 	 * Object is written to file using the subtype's convention. File must be
@@ -44,6 +78,7 @@ public interface H5Writer {
 	 *            The object to write
 	 * @throws H5Exception
 	 */
-	public void writeObjectToFile(H5File file, String label, Object obj) throws H5Exception;
+	public void writeObjectToFile(H5File file, String label, Object obj)
+			throws H5Exception;
 
 }
