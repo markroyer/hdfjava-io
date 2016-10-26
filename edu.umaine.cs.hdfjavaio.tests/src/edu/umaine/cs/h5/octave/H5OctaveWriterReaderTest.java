@@ -447,10 +447,19 @@ public class H5OctaveWriterReaderTest {
 	}
 
 	private void checkMatrix(Object matrix, Object expectedMatrix) throws H5Exception {
+		// Check using array of parameters
 		Object[] params = { matrix };
 		writer.writeHDF5File(testFileName, params);
 		List<NameValuePair> result = reader.readHDF5File(new File(testFileName));
 		Object[] expectedParams = { expectedMatrix };
 		checkNameValuePairs(listOfNames("p", 0, 0), Arrays.asList(expectedParams), result);
+		
+		// Check using list of parameters
+		List<Object> paramsList = Arrays.asList(params);
+		writer.writeHDF5File(testFileName, paramsList);
+		List<NameValuePair> result2 = reader.readHDF5File(new File(testFileName));
+		List<Object> expectedParamsList = Arrays.asList(expectedMatrix);
+		checkNameValuePairs(listOfNames("p", 0, 0), expectedParamsList, result2);
+		
 	}
 }
