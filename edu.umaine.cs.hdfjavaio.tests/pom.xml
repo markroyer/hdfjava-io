@@ -11,7 +11,6 @@
 		<relativePath>../edu.umaine.cs.hdfjavaio.parent</relativePath>
 	</parent>
 
-
 	<build>
 		<plugins>
 			<plugin>
@@ -22,34 +21,29 @@
 					<useUIHarness>false</useUIHarness>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.7.201606060606</version>
+				<executions>
+					<execution>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
-	<profiles>
-		<profile>
-			<id>osx</id>
-			<activation>
-				<property>
-					<name>java.vendor.url</name>
-					<value>http://www.apple.com/</value>
-				</property>
-			</activation>
-			<build>
-				<pluginManagement>
-					<plugins>
-						<plugin>
-							<groupId>org.eclipse.tycho</groupId>
-							<artifactId>tycho-surefire-plugin</artifactId>
-							<version>${tycho-version}</version>
-							<configuration>
-								<argLine>-XstartOnFirstThread</argLine>
-							</configuration>
-						</plugin>
-					</plugins>
-				</pluginManagement>
-			</build>
-		</profile>
-	</profiles>
 
 
 </project>
