@@ -47,18 +47,24 @@ HDFJava library from the
 
 ## Building
 
-The project can be built most easily using maven from the
+The project can be built using maven from the
 `edu.umaine.cs.hdfjavaio.parent` directory. Typing
 
 ```bash
 mvn clean verify
 ```
 
-will compile the project and create a repository containing all of the
-related libraries in
+will compile the project.  To create a p2 repository containing all of
+the related libraries in
 
 ```bash
 ../../hdfjavaio.wiki/
+```
+
+append the optional profile command `p2-release` as shown below.
+
+```bash
+mvn clean verify -P p2-release
 ```
 
 ## LICENSE
