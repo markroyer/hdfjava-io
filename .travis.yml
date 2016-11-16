@@ -16,3 +16,7 @@ os:
 # build, go ahead and remove offline mode (-o).
 
 script: mvn -f edu.umaine.cs.hdfjavaio.parent/pom.xml clean verify
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
