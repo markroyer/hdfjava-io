@@ -15,4 +15,4 @@ os:
 # Usually run the CI builds in offline mode.  If this is breaking the
 # build, go ahead and remove offline mode (-o).
 
-script: mvn -o -f edu.umaine.cs.hdfjavaio.parent/pom.xml clean test
+script: mvn -f edu.umaine.cs.hdfjavaio.parent/pom.xml clean verify
