@@ -25,9 +25,9 @@ public class Application implements IApplication {
 			System.out.println(arg);
 		}
 
-		H5FileExample example = new H5FileExample(new File("test.h5"));
+		H5FileExample example = new H5FileExample(File.createTempFile("test", ".h5"));
 
-		example.writeFile();
+		example.performFileWrites(1000,  100000, 10, 0, 1000);
 
 		System.out.printf("File successfully written to %s.\n",
 				example.getFile().getAbsolutePath());

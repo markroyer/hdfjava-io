@@ -4,7 +4,6 @@
 package edu.umaine.cs.simple;
 
 import java.io.File;
-import java.util.Arrays;
 
 import edu.umaine.cs.h5.H5ConnectorException;
 import edu.umaine.cs.h5.octave.H5OctaveWriter;
@@ -32,18 +31,51 @@ public class H5FileExample {
 		return file;
 	}
 
-	public void writeFile() throws H5ConnectorException {
+	/**
+	 * @param n
+	 *            The number of writes to perform (>= 0)
+	 * @param rows
+	 *            The number of rows in the file (>= 0)
+	 * @param cols
+	 *            The number of columns in the file (>= 0)
+	 * @param start
+	 *            The starting value
+	 * @param end
+	 *            The ending value
+	 * @return The average number of milliseconds to write the file
+	 * @throws H5ConnectorException
+	 */
+	public long performFileWrites(int n, int rows, int cols, double start,
+			double end) throws H5ConnectorException {
 
 		H5OctaveWriter out = new H5OctaveWriter();
 
-		final double[][] double2D = create2Darray(100, 10, 0, 1000);
+		final double[][] double2D = create2Darray(rows, cols, start, end);
 
 		Object[] args2 = new Object[] { double2D };
 
-		for (int i=0; i < double2D.length; i++)
-			System.out.println(Arrays.toString(double2D[i]));
+		long sum = 0;
 
-		out.writeHDF5File(file.getAbsolutePath().toString(), args2);
+		for (int i = 0; i < n; i++) {
+			long startTime = System.currentTimeMillis();
+
+			out.writeHDF5File(file.getAbsolutePath().toString(), args2);
+
+			long endTime = System.currentTimeMillis();
+
+			long runTime = endTime - startTime;
+
+			System.out.printf("%d values written in %.3f seconds.\n", 100 * 10,
+					runTime / 1000f);
+
+			sum += runTime;
+		}
+
+		long aveRunTime = sum / n;
+
+		System.out.printf("Average runtime %d\n", aveRunTime);
+
+		return aveRunTime;
 
 	}
 
