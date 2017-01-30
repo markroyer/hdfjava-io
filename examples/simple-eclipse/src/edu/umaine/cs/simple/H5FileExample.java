@@ -36,15 +36,41 @@ public class H5FileExample {
 
 		H5OctaveWriter out = new H5OctaveWriter();
 
-		final double[][] double2D = { { 1, 2, 3, 4, 5 },
-				{ 15.1, 13.2, 14.3, 16.4, 17.5 } };
+		final double[][] double2D = create2Darray(100, 10, 0, 1000);
 
 		Object[] args2 = new Object[] { double2D };
 
-		System.out.println(Arrays.toString(createArray(10, 10, 25)));
+		for (int i=0; i < double2D.length; i++)
+			System.out.println(Arrays.toString(double2D[i]));
 
 		out.writeHDF5File(file.getAbsolutePath().toString(), args2);
 
+	}
+
+	/**
+	 * Create a 2D array starting at the given start value.
+	 * 
+	 * @param rows
+	 *            (>= 0)
+	 * @param cols
+	 *            (>= 0)
+	 * @param start
+	 * @param end
+	 * @return
+	 */
+	private double[][] create2Darray(int rows, int cols, double start,
+			double end) {
+
+		double[][] result = new double[cols][];
+
+		double inc = (end - start) / cols;
+
+		for (int i = 0; i < cols; i++) {
+			result[i] = createArray(rows, start + inc * i,
+					start + inc * (i + 1));
+		}
+
+		return result;
 	}
 
 	/**
