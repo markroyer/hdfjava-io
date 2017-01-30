@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="simple-eclipse" id="simple-eclipse.product" application="simple-eclipse.application" useFeatures="false" includeLaunchers="true">
+<product name="simple-eclipse" uid="simple-eclipse.product" id="simple-eclipse.product" application="simple-eclipse.application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -22,7 +22,6 @@
    </vm>
 
    <plugins>
-      <plugin id="simple-eclipse"/>
       <plugin id="edu.umaine.cs.hdfjavaio"/>
       <plugin id="javax.xml"/>
       <plugin id="ncsa.hdf.hdfjava"/>
@@ -33,6 +32,7 @@
       <plugin id="org.eclipse.osgi"/>
       <plugin id="org.eclipse.osgi.compatibility.state" fragment="true"/>
       <plugin id="org.eclipse.wst.jsdt.nashorn.extension" fragment="true"/>
+      <plugin id="simple-eclipse"/>
    </plugins>
 
 
