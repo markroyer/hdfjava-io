@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+ <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application
+            cardinality="singleton-global"
+            thread="main"
+            visible="true">
+         <run
+               class="edu.umaine.cs.simple.Application">
+         </run>
+      </application>
+   </extension>
+ <extension
+       id="product"
+       point="org.eclipse.core.runtime.products">
+    <product
+          application="performance-tests-eclipse.application"
+          name="performance-tests-eclipse">
+       <property
+             name="appName"
+             value="performance-tests-eclipse">
+       </property>
+    </product>
+ </extension>
+</plugin>
