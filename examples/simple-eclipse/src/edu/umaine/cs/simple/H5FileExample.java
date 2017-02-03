@@ -65,8 +65,8 @@ public class H5FileExample {
 
 			long runTime = endTime - startTime;
 
-			System.out.printf("%d values written in %.3f seconds.\n", 100 * 10,
-					runTime / 1000f);
+			if (i % 100 == 0)
+				System.out.printf("%d out of %d\n", i, n);
 
 			sum += runTime;
 		}
