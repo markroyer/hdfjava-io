@@ -18,7 +18,7 @@ public class Activator implements BundleActivator {
 	 * BundleContext)
 	 */
 	public void start(BundleContext context) throws Exception {
-		System.out.println("Start plug-in.");
+		System.out.println("Start plug-in");
 	}
 
 	/*
@@ -28,7 +28,7 @@ public class Activator implements BundleActivator {
 	 * org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
 	 */
 	public void stop(BundleContext context) throws Exception {
-		System.out.println("Stop plug-in.");
+		System.out.println("Stop plug-in");
 	}
 
 }
