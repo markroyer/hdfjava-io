@@ -6,3 +6,4 @@ Fragment-Host: edu.umaine.cs.hdfjavaio;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.junit,
  org.eclipse.core.runtime;bundle-version="3.11.0"
+Automatic-Module-Name: edu.umaine.cs.hdfjavaio.tests

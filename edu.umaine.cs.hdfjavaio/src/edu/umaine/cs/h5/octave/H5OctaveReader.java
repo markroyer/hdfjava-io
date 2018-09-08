@@ -45,18 +45,20 @@ public class H5OctaveReader implements H5Reader {
 	 * java.lang.String[])
 	 */
 	@Override
-	public List<NameValuePair> readHDF5File(File file, String[] names) throws H5Exception {
+	public List<NameValuePair> readHDF5File(File file, String[] names)
+			throws H5Exception {
 
 		List<NameValuePair> results = new ArrayList<NameValuePair>();
 
 		try {
 
 			// Open an existing file.
-			H5File hdfFile = new H5File(file.getAbsolutePath(), FileFormat.READ);
+			H5File hdfFile = new H5File(file.getAbsolutePath(),
+					FileFormat.READ);
 			int id = hdfFile.open();
 
 			if (id < 0)
-				throw new Exception();
+				throw new H5Exception("Unable to open the file " + file.getAbsolutePath());
 
 			// Get group info.
 			H5G_info_t ginfo = H5.H5Gget_info(id);
@@ -74,7 +76,8 @@ public class H5OctaveReader implements H5Reader {
 
 			for (int i = 0; i < ginfo.nlinks; i++) {
 				// Retrieve the name of the ith link in a group
-				String name = H5.H5Lget_name_by_idx(id, ".", sortOrder, HDF5Constants.H5_ITER_INC, i,
+				String name = H5.H5Lget_name_by_idx(id, ".", sortOrder,
+						HDF5Constants.H5_ITER_INC, i,
 						HDF5Constants.H5P_DEFAULT);
 
 				if (namesList == null || namesList.contains(name)) {
@@ -111,6 +114,22 @@ public class H5OctaveReader implements H5Reader {
 
 		return results;
 
+	}
+
+	@Override
+	public <T> T readHDF5Object(H5File file, String name, Class<T> type)
+			throws H5Exception {
+		
+		try {
+			H5Group h5Grp = ((H5Group) file.get(name));
+			
+			Object javaValue = getJavaValueFromH5Group(h5Grp);
+			
+			return type.cast(javaValue);
+		} catch (Exception e) {
+			throw new H5Exception(e);
+		}
+		
 	}
 
 }

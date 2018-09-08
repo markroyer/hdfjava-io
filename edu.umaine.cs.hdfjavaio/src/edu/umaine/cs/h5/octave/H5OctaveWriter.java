@@ -124,6 +124,7 @@ public class H5OctaveWriter implements H5Writer {
 	 *             Thrown if there is an issue writing to the file (most likely
 	 *             a typing problem)
 	 */
+	@Override
 	public void writeObjectToFile(H5File file, String label, Object obj)
 			throws H5Exception {
 
