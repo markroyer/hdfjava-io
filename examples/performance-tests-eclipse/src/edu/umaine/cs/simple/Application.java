@@ -24,7 +24,8 @@ public class Application implements IApplication {
 		
 		System.out.println("Start application!");
 		
-		new H5FileExample().run(appArgs);
+//		new H5FileExample().runHDFJavaIOandJavaOctaveTests(appArgs);
+		new H5FileExample().runHDFJavaIOTests(appArgs);
 		
 		return IApplication.EXIT_OK;
 	}
